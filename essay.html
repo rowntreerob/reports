@@ -4,8 +4,148 @@
   <meta charset="utf-8" />
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>claud_response_tst</title>
+  <title>market signals - San Fran housing</title>
   <style>
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
     code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
     span.underline{text-decoration: underline;}
@@ -14,461 +154,696 @@
     ul.task-list{list-style: none;}
     .display.math{display: block; text-align: center; margin: 0.5rem auto;}
   </style>
-  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 <h1
-id="the-colorado-affordable-housing-cost-puzzle-analysis-and-research-design">The
-Colorado Affordable Housing Cost Puzzle: Analysis and Research
-Design</h1>
-<h2 id="i.-framing-the-question-precisely">I. Framing the Question
-Precisely</h2>
-<p>Before attempting an answer, it is worth being precise about what the
-RAND data actually show regarding Colorado’s anomaly, because the
-specificity matters for both hypothesis generation and research
-design.</p>
-<p>The RAND findings establish the following:</p>
-<ul>
-<li><strong>Texas</strong>: LIHTC hard costs are <strong>1.5x</strong>
-market-rate hard costs; LIHTC TDC per NRSF is <strong>$228
-vs. $157</strong> for market rate — a roughly <strong>50%
-premium</strong></li>
-<li><strong>California</strong>: LIHTC TDC per NRSF is <strong>$640
-vs. $415</strong> for market rate — a <strong>1.5x premium</strong> at
-NRSF level, wider still in hard costs at <strong>1.7x</strong></li>
-<li><strong>Colorado</strong>: LIHTC TDC per NRSF is <strong>$249
-vs. $303</strong> for market rate — LIHTC is actually
-<strong>cheaper</strong> than market rate, the only state in the sample
-where this is true. Hard costs for LIHTC in Colorado are <strong>$183
-vs. $237</strong> for market rate, a ratio of <strong>0.8</strong></li>
-</ul>
-<p>So the question is not merely “why is Colorado’s LIHTC premium small”
-— it is the more striking question of <strong>why Colorado LIHTC
-projects cost less than Colorado market-rate projects</strong>, a
-relationship that is inverted relative to every other state in the
-sample. Ward himself describes this as “one of the mysteries that came
-out of this research” and explicitly states he does not yet have an
-answer.</p>
-<hr />
-<h2 id="ii.-what-we-can-rule-out-or-constrain">II. What We Can Rule Out
-or Constrain</h2>
-<p>Before proposing hypotheses, it is useful to eliminate explanations
-that the existing RAND data allow us to dismiss or significantly
-discount.</p>
-<h3 id="not-explainable-by-land-costs">Not Explainable by Land
-Costs</h3>
-<p>Colorado LIHTC land costs per NRSF are <strong>$1.50</strong>, versus
-<strong>$23</strong> for Colorado market-rate projects. This is the
-lowest land cost in the entire analysis. While subsidized land programs
-are a plausible contributor, the RAND methodology already excludes
-projects with near-zero land costs to filter out free-land programs. So
-even after that filter, LIHTC land costs in Colorado are extraordinarily
-low — roughly <strong>6% of market-rate land costs in the same
-state</strong>. This is a meaningful data point but likely reflects site
-selection patterns (LIHTC projects in lower-cost suburban or exurban
-Colorado locations) rather than a structural policy explanation for the
-hard cost differential.</p>
-<h3 id="not-primarily-a-unit-size-artifact">Not Primarily a Unit-Size
-Artifact</h3>
-<p>The RAND per-unit analysis shows Colorado LIHTC TDC per unit at
-<strong>$94,000 vs. $193,000</strong> for market rate — a ratio of
-<strong>0.5</strong>. This means LIHTC units in Colorado are both
-cheaper per NRSF <strong>and</strong> substantially smaller per unit.
-Unit downsizing is clearly a partial mechanism, but it cannot by itself
-explain why hard costs per NRSF are lower for LIHTC than market rate,
-since smaller units generally increase cost per NRSF (more kitchens and
-bathrooms per square foot of rentable space). The fact that Colorado
-LIHTC hard costs are lower per NRSF <strong>despite</strong> this
-dynamic makes the finding more, not less, puzzling.</p>
-<h3 id="not-explained-by-prevailing-wage">Not Explained by Prevailing
-Wage</h3>
-<p>Ward explicitly notes in the podcast that prevailing wage
-requirements on LIHTC projects are “at minimum much less common in
-Colorado and Texas.” The RAND report estimates prevailing wage
-requirements explain 40-56% of California LIHTC hard cost premiums.
-Since Colorado does not appear to impose these requirements
-systematically on LIHTC projects, this removes what is otherwise the
-single largest driver of LIHTC cost premiums in California. However,
-Texas also largely lacks prevailing wage requirements, yet still shows a
-1.5x LIHTC-to-market-rate cost ratio. So the absence of prevailing wage
-is a necessary but not sufficient explanation for Colorado’s result.</p>
-<h3 id="not-simply-a-soft-cost-story">Not Simply a Soft Cost Story</h3>
-<p>Soft costs in Colorado for LIHTC are <strong>$75/NRSF
-vs. $44</strong> for market rate — a ratio of <strong>1.7x</strong>,
-which is actually similar to the California market-rate to LIHTC soft
-cost ratio pattern and consistent with the complexity of LIHTC
-compliance, reporting, and financing across all states. The Colorado
-anomaly is concentrated in <strong>hard costs and land costs</strong>,
-not soft costs. Soft costs in Colorado follow the expected pattern of
-being higher for LIHTC than market rate.</p>
-<hr />
-<h2 id="iii.-plausible-hypotheses">III. Plausible Hypotheses</h2>
-<p>Given what can be ruled out, the following hypotheses remain viable
-and are ranked roughly by their prior probability based on available
-evidence.</p>
+id="what-the-market-is-telling-us-price-signals-construction-costs-and-the-widening-gap-between-what-housing-costs-and-what-it-can-afford-to-cost"><strong>What
+the Market Is Telling Us: Price Signals, Construction Costs, and the
+Widening Gap Between What Housing Costs and What It Can Afford to
+Cost</strong></h1>
+<h2
+id="section-1-the-economics-of-shelter-why-market-signals-still-matter"><strong>Section
+1: The Economics of Shelter — Why Market Signals Still
+Matter</strong></h2>
+<p>There is a temptation, when confronting the housing crisis in San
+Francisco, to treat it as a problem so locally specific, so deeply
+embedded in the city's political culture and physical geography, that
+the ordinary tools of economic analysis lose their explanatory power.
+The city sits on a peninsula with finite land. Its neighborhoods carry
+the weight of decades of displacement, redevelopment battles, and
+demographic transformation. Its political vocabulary is saturated with
+the language of community, justice, and protection from market forces.
+In this environment, invoking supply and demand can feel almost naive —
+a sophomore economics lecture delivered into a room full of people who
+have watched the market, as they understand it, price their neighbors
+out of their homes for a generation.</p>
+<p>But the laws of economics do not suspend themselves out of
+sensitivity to local politics. They operate in San Francisco exactly as
+they operate in Austin, Texas, or Denver, Colorado, or any other
+American city where housing costs have become a defining civic problem.
+What changes from city to city is not whether markets send signals, but
+whether the policy environment allows those signals to be heard, and
+whether the actors receiving them are free to respond. In San Francisco,
+the signals have been loud for years. What is remarkable — and what this
+chapter will document in detail — is how systematically the policy
+architecture has prevented the responses those signals demand.</p>
+<p>To understand what follows, the reader needs a working grasp of one
+foundational concept from microeconomics: the role of relative prices.
+Unlike nominal prices — the raw dollar amounts on a price tag — relative
+prices express the cost of one thing in terms of another. They are
+ratios, and as ratios they carry information that nominal prices alone
+cannot convey. A rising relative price signals that a good is becoming
+scarcer or more valued compared to its alternatives; it tells producers
+to move resources toward that good, and it tells consumers to consider
+substitutes. A falling relative price sends the opposite message.
+Together, relative prices constitute the signaling system through which
+a market economy coordinates the decisions of millions of independent
+actors without any central authority directing traffic.</p>
+<p>In housing development, the relevant relative prices include: the
+cost of construction labor relative to other labor markets; the cost of
+land relative to the density of housing that land is permitted to
+support; the cost of regulatory compliance relative to the value of the
+housing produced; and most critically for this chapter, the relative
+cost of producing a unit of affordable housing through a publicly
+financed process versus a privately financed one. Each of these ratios
+is sending a signal. The signals, taken together, compose a picture that
+is simultaneously a diagnosis of how the current system has failed and a
+map of where a better-functioning system might go.</p>
+<h3 id="the-development-decision-as-a-market-signal"><strong>The
+Development Decision as a Market Signal</strong></h3>
+<p>Housing development is not a spot transaction. When a developer —
+public or private, nonprofit or for-profit — commits to building a
+multifamily housing project, they are making a long-duration capital
+commitment whose financial logic must hold across a time horizon of
+thirty years or more. The upfront costs of land acquisition, design,
+permitting, and construction must be recoverable from the downstream
+stream of rental income the completed project generates. If they are not
+— if the sum of construction costs, financing costs, operating costs,
+and required returns exceeds what tenants can pay — the project will not
+be built. In the language of the development industry, it will not
+<em>pencil</em>.</p>
+<p>This is not greed. It is arithmetic. And it is arithmetic that
+operates identically whether the developer is a for-profit firm seeking
+a return for equity investors or a nonprofit developer seeking to deploy
+scarce public subsidy dollars toward the maximum number of affordable
+homes. In both cases, total development costs must be financed, and the
+financing must be serviced. The only difference is the source of the
+money and the mechanism by which the gap between what tenants can pay
+and what the project costs is bridged. In the private market, the bridge
+is profit — rental income sufficient to service debt and return equity.
+In the publicly subsidized affordable housing market, the bridge is a
+complex, layered stack of public subsidies, tax credits, and gap loans.
+In both cases, the bridge must reach across the same chasm. And in San
+Francisco, that chasm has become, for a growing share of projects,
+unbridgeable.</p>
+<p>The RAND Corporation, in its 2025 study of multifamily housing
+production costs across California, Colorado, and Texas, measured the
+construction cost component of this chasm with unusual precision. Using
+completed cost data from 144 projects built between 2016 and 2024, RAND
+found that production costs per net rentable square foot for market-rate
+housing in California average $415 — 2.6 times the $157 average in
+Texas. For publicly subsidized affordable housing built under the
+federal Low Income Housing Tax Credit program, California's costs are
+higher still: $640 per net rentable square foot, or 4.1 times the cost
+of market-rate production in Texas. Within California, the San Francisco
+Bay Area is the most expensive region by a substantial margin: $531 per
+square foot for market-rate projects and $731 per square foot for LIHTC
+projects — figures that, adjusted to 2025 dollars, approach $650 and
+$900 respectively.</p>
+<p>These are not small variations attributable to local geography or the
+premium of building in a dense urban environment. They are ratios of a
+magnitude that constitute, in the language of relative price theory, a
+screaming signal. The signal reads: <em>the cost of producing housing
+here, under current rules, has risen so far above what the market can
+support that normal investment behavior cannot function.</em> The
+private market has heard this signal and responded, predictably, by
+retreating: San Francisco currently has approximately 60,000 units that
+have been approved through the zoning and permitting process but remain
+unbuilt, sitting in a pipeline paralyzed not by regulatory obstruction
+but by financial infeasibility. The public market has heard the same
+signal and responded, also predictably, by requiring ever-larger
+infusions of public subsidy to close the gap — with the result that the
+same pool of public money produces fewer and fewer units each year.</p>
+<h3 id="the-elasticity-that-connects-costs-to-rents"><strong>The
+Elasticity That Connects Costs to Rents</strong></h3>
+<p>The relationship between production costs and housing affordability
+is not merely intuitive — it is quantifiable. RAND estimated the
+elasticity of rental prices to production costs across their dataset of
+California, Colorado, and Texas projects, finding a mean elasticity of
+0.44. In plain English: a 10 percent increase in production costs is
+associated with a 4.4 percent increase in market rents. This
+relationship held consistently across four different model
+specifications, and the models explained more than 75 percent of the
+observed variation in rental prices across the regions studied.</p>
+<p>The policy implication is direct. If California could halve the
+production cost gap between the Los Angeles metropolitan area and Texas
+— a reform achievable, RAND argues, through a combination of timeline
+compression, impact fee reduction, and upzoning — production costs would
+fall by approximately 32 percent, and feasible market rents would
+decline by roughly 14 percent, or about $363 per month from an average
+of $2,577. That is not a trivial number for a working-class household in
+a city where median rents consume more than half of median household
+income for lower-wage workers.</p>
+<p>The inverse also holds: every increment of cost increase is passed
+through to rents, or absorbed in the form of projects that no longer
+pencil. When projects stop penciling, supply falls short of demand,
+vacancy rates decline, and rents rise further. The cost signal and the
+rent signal are not independent variables — they are coupled in a
+feedback loop that, in San Francisco's current environment, is running
+in the wrong direction. Costs rise, projects stall, supply falls, rents
+rise, the gap between affordable rents and construction costs widens,
+more public subsidy is required to bridge the gap, and the same public
+dollars produce fewer units, which reduces supply further. Understanding
+this loop is the first requirement for understanding why the chapter's
+data looks the way it does.</p>
+<h2
+id="section-2-reading-the-gaps-public-finance-private-finance-and-the-widening-distance-between-them"><strong>Section
+2: Reading the Gaps — Public Finance, Private Finance, and the Widening
+Distance Between Them</strong></h2>
+<p><em>[Note to reader: This section contains detailed cost data from
+multiple sources. The numbers are important — they are the evidence for
+the chapter's argument — but readers who prefer narrative to tables can
+follow the argument from the text alone without losing the
+thread.]</em></p>
+<p>The most important single axis for understanding San Francisco's
+housing cost crisis runs between two poles: publicly financed affordable
+housing, produced through a complex stack of federal tax credits, state
+subsidies, city gap loans, and nonprofit developer infrastructure; and
+privately financed market-rate housing, produced by for-profit
+developers using equity investment and commercial debt, with no public
+subsidy beyond whatever zoning rights the city has granted. Between
+these poles lies a spectrum of hybrid models — mixed-income developments
+with partial LIHTC equity, market-rate projects with inclusionary
+affordable units, and an emerging tier of for-profit developers entering
+the affordable space through LIHTC alone, without the layers of city and
+state gap financing that have historically defined the publicly
+subsidized model.</p>
+<p>The gaps between these financing models — in cost per unit, in public
+subsidy required, in units produced per dollar of public investment, and
+in the construction methods and timelines they enable — are the subject
+of this section. Three distinct gaps require attention: the gap between
+what affordable rents can support and what construction costs require;
+the gap between what California spends to build publicly subsidized
+housing and what comparable housing costs in other states; and the gap
+between what conventional construction methods cost and what emerging
+factory-built alternatives can deliver.</p>
 <h3
-id="hypothesis-1-colorados-lihtc-projects-are-systematically-simpler-in-building-type-and-configuration">Hypothesis
-1: Colorado’s LIHTC Projects Are Systematically Simpler in Building Type
-and Configuration</h3>
-<p>The RAND model controls for building type using fixed effects, but
-the Colorado LIHTC sample may be disproportionately composed of
-<strong>garden-style, low-rise, wood-frame construction</strong> in
-suburban or smaller metro locations compared to Colorado market-rate
-projects, which may skew toward <strong>podium or wrap
-construction</strong> in the Denver metro area where land costs and
-density pressures are higher.</p>
-<p>Garden-style construction is the lowest-cost building typology. If
-Colorado LIHTC developers have been more disciplined or more
-geographically constrained toward simpler building types than Colorado
-market-rate developers — who may be chasing higher-density urban infill
-— this could produce a real hard cost advantage even after the
-regression’s building-type controls, if the within-category variation is
-large and the Colorado LIHTC sample is concentrated at the low-cost end
-of the garden-type distribution.</p>
-<p><strong>Why this is plausible</strong>: Denver’s market-rate
-development has increasingly concentrated in urban infill podium
-construction, which is inherently more expensive even within the same
-building-type category. Colorado’s LIHTC pipeline may reflect a
-different geographic and typological distribution.</p>
-<p><strong>Limitation</strong>: RAND’s building-type fixed effects
-should partially capture this, but if Colorado LIHTC projects are
-systematically simpler even within the garden category — smaller
-footprints, less complex site conditions, fewer amenity packages — the
-model would not fully capture it.</p>
-<hr />
+id="gap-one-the-scissors-effect-when-ami-ceilings-and-construction-costs-diverge"><strong>Gap
+One: The Scissors Effect — When AMI Ceilings and Construction Costs
+Diverge</strong></h3>
+<p>The fundamental financial logic of affordable housing rests on a
+regulatory concept: Area Median Income, or AMI. The federal Department
+of Housing and Urban Development calculates AMI annually for each
+metropolitan area, and affordable housing programs use AMI as the basis
+for setting maximum rents. A unit restricted to 30 percent AMI must be
+rented at a price affordable to a household earning 30 percent of the
+area median — in San Francisco, where AMI for a family of four exceeds
+$150,000, that means a 30 percent AMI household earns roughly $45,000
+annually, and the rent on a three-bedroom unit cannot exceed
+approximately $858 per month under standard affordability
+definitions.</p>
+<p>Eight hundred and fifty-eight dollars per month. In San Francisco.
+For a three-bedroom apartment that cost more than one million dollars to
+build.</p>
+<p>This is not a rhetorical flourish. It is the actual arithmetic of the
+1979 Mission Street project currently in predevelopment by Mission
+Housing Development Corporation and Mission Economic Development Agency,
+with financing evaluation completed by the Mayor's Office of Housing and
+Community Development in May 2024. The Family component of the project —
+250 units targeted at households earning 30 to 80 percent of AMI —
+carries a total development cost of $261,765,993, or $1,047,063 per
+unit. The land was free: MOHCD acquired the 1.32-acre site at zero cost
+through a land dedication arrangement completed in 2022. The parking
+requirement is zero. The site is adjacent to a major BART transit hub.
+Every cost reduction that San Francisco's policy toolkit can offer has
+been applied. And the per-unit cost still exceeds one million
+dollars.</p>
+<p>The Permanent Supportive Housing component — 150 units of studios and
+one-bedrooms for individuals experiencing homelessness, an even more
+vulnerable population requiring even more intensive services — comes in
+at $958,636 per unit. Rents in PSH units are typically set at 30 percent
+AMI or below, meaning monthly rent income of perhaps $700 to $900 per
+unit. The gap between that rental income and the financing cost of a
+$958,636 unit is not closeable by any private financing mechanism. It
+requires the entire project to be publicly funded, with MOHCD alone
+committing $30 million in gap financing — $200,000 per unit — on top of
+whatever LIHTC equity, state credits, and other federal sources the
+project will assemble.</p>
+<p>The 1979 Mission project is not an outlier. It is representative. Of
+the 23 San Francisco projects that received tax credit funding over the
+three years preceding December 2025, eleven exceeded $1 million per unit
+and six exceeded $900,000 per unit. The city-compiled gap finance data
+examined for this chapter shows per-unit gap financing requirements
+ranging from $43,255 at 1515 South Van Ness to $434,556 at 730 Stanyan
+Street — a tenfold spread that itself signals something important: even
+within the universe of publicly financed affordable projects in a single
+city, there is dramatic variation in how efficiently public dollars are
+being deployed. The projects at the low end of the gap range are telling
+policymakers something the projects at the high end are not.</p>
+<p>The scissors effect driving this crisis has two blades. One blade is
+the slow, HUD-regulated growth of AMI-based rent limits — these move
+with area incomes, which in San Francisco have risen substantially for
+high-wage workers but far more slowly for the low-wage workers who most
+need affordable housing. The other blade is the rapid, policy-driven
+escalation of construction costs — RAND documents cost growth that has
+substantially outpaced general inflation, particularly in the publicly
+subsidized sector where California-specific requirements have compounded
+the underlying market cost increases. As the blades of the scissors
+diverge, the gap between what a project can earn in rent and what it
+costs to build widens, requiring more public subsidy to close — and
+since the pool of public subsidy is finite and itself subject to
+political and budget pressures, more subsidy per unit means fewer units
+built.</p>
+<p>Ben Metcalf, managing director of the Terner Center for Housing
+Innovation at UC Berkeley, identified the specific mechanism with
+precision in a December 2025 interview with the San Francisco Chronicle:
+every additional layer of public financing added to a project's capital
+stack imposes approximately $20,000 per unit in administrative costs —
+compliance requirements, reporting obligations, legal fees, monitoring
+costs — that are themselves part of the gap the next layer of financing
+must close. The gap generates the administrative burden that widens the
+gap. San Francisco's most complex publicly financed projects assemble
+six, seven, or eight separate financing sources, each with its own
+requirements and timelines. The administrative cost of that complexity,
+at $20,000 per layer, can add $100,000 to $160,000 per unit before a
+single brick has been laid.</p>
+<h3 id="gap-two-the-interstate-and-publicprivate-cost-chasm"><strong>Gap
+Two: The Interstate and Public/Private Cost Chasm</strong></h3>
+<p>The second gap is perhaps the most analytically clarifying, because
+it isolates the portion of California's cost premium that is
+attributable to policy choices rather than geography or market
+conditions.</p>
+<p>The RAND study is careful to control for building type, project size,
+inflation timing, and unit size when making cross-state comparisons.
+After these controls, the cost differences that remain are persistent,
+large, and decomposable into specific categories that map directly onto
+specific policy decisions. The headline findings deserve to be stated
+plainly, because they are extraordinary: California's publicly
+subsidized affordable housing costs $662 per net rentable square foot —
+more than four times the $157 per square foot cost of market-rate
+housing in Texas, and more than 2.5 times the $260 per square foot cost
+of publicly subsidized affordable housing in Colorado. Within
+California, the San Francisco Bay Area is the most expensive region in
+the entire study sample, with LIHTC project costs of $731 per square
+foot in 2019 dollars — figures that translate to approximately $900 per
+square foot in 2025 terms.</p>
+<p>These ratios are not driven primarily by land costs, which RAND
+analyzes separately. They are driven by three categories of
+policy-influenced costs: hard construction costs inflated by prevailing
+wage requirements and California-specific building code mandates; soft
+costs inflated by municipal impact fees, architectural and engineering
+requirements, and the administrative burden of complex funding
+structures; and timeline-driven carrying costs inflated by approval
+processes that average 22 months longer in California than in Texas.</p>
+<p>Consider the hard cost component first. RAND found that hard
+construction costs for market-rate projects average $115 per square foot
+in Texas and $253 per square foot in California — a ratio of 2.2 to 1
+that holds across all major cost subcategories: framing, electrical,
+plumbing, foundations, drywall, masonry. For publicly subsidized LIHTC
+projects, the hard cost differential is more severe: $173 per square
+foot in Texas versus $427 per square foot in California, a ratio of 2.5
+to 1. A substantial share of the LIHTC hard cost premium in California
+is attributable to prevailing wage requirements — rules mandating that
+workers on publicly subsidized projects be paid union-scale wages that
+run approximately 1.5 times the market wage in Los Angeles and San
+Diego, and 2.2 times the market wage in San Francisco. RAND's labor cost
+analysis found that prevailing wage differences can explain 32 to 56
+percent of the hard cost gap between California LIHTC projects and their
+Texas equivalents, depending on the region.</p>
+<p>The soft cost component tells an equally stark story. California
+market-rate projects pay average soft costs of $84 per square foot — 3.8
+times the Texas market-rate average of $22. For LIHTC projects in
+California, soft costs average $187 per square foot — 8.5 times the
+Texas market-rate average. In the Los Angeles metro region, LIHTC soft
+costs reach $221 per square foot. To give that figure the context it
+deserves: the soft costs alone on a Los Angeles LIHTC project — the
+architectural fees, municipal impact fees, legal costs, compliance
+monitoring, financing fees, and environmental reports — exceed the total
+hard construction cost of a market-rate apartment in San Diego, which is
+itself subject to California's stringent seismic and energy efficiency
+requirements. Paper and process cost more than lumber and concrete.</p>
+<p>Municipal impact fees deserve particular attention, because they
+represent perhaps the most transparent example of a policy choice
+directly converting into a cost that falls entirely on new housing
+production. Texas state law limits impact fees to water and wastewater
+infrastructure costs, caps the amount, and requires that charges be
+offset by the increased property tax revenue new development generates.
+The result: Texas market-rate projects average $816 per unit in
+municipal impact fees. California is a different world. San Diego
+market-rate projects average $36,992 per unit in impact fees — 45 times
+the Texas average, and representing more than 14 percent of total
+development cost. San Francisco market-rate projects average $30,712 per
+unit — 37 times the Texas average. These fees are levied on every unit
+of new housing, including affordable housing, without exception.</p>
+<p>The production timeline premium compounds all of these cost
+categories. RAND found that bringing a market-rate project to completion
+in California takes an average of 49 months — nearly twice the 27-month
+average in Texas. California's predevelopment phase alone averages 27.9
+months, compared to 13.1 months in Texas, a 15-month gap driven
+primarily by lengthy approval processes, CEQA litigation exposure, and
+sequential rather than concurrent permitting and inspection procedures.
+Each additional month of predevelopment and construction carries a cost:
+RAND estimates approximately $1,284 per unit per month in
+timeline-related expenses, including land carrying costs, property
+taxes, equipment rental, and financing costs on committed but undeployed
+capital. The 22-month California-Texas timeline differential translates
+to roughly $28,000 per unit in pure timeline-driven cost premium —
+before a single additional regulatory requirement has been
+satisfied.</p>
+<p>The cumulative effect of these cost differences on the productive
+efficiency of public housing subsidy is captured in a single RAND
+counterfactual that should be read as a policy challenge as much as a
+data point: if California's publicly subsidized affordable housing were
+produced at Colorado's production costs — not Texas's, not some
+theoretical optimum, but the actual costs achieved by a comparable
+western state with real winters, real seismic exposure, and real urban
+density challenges — the approximately $1.25 billion in recent spending
+by California's four largest affordable housing funding programs would
+have produced more than four times as many units as it actually did.
+Four times. The same public investment. The difference is not generosity
+or commitment; it is efficiency.</p>
+<p>The data assembled for this chapter from San Francisco projects makes
+this calculation local and vivid. The six publicly financed affordable
+projects in our dataset average $1,032,000 per unit. The four privately
+financed market-rate projects in the same city average $543,000 per unit
+— roughly half the public project cost. The same land market. The same
+seismic requirements. The same labor pool. The same city. The 2-to-1
+ratio between public and private production costs in San Francisco is
+not a California-versus-Texas comparison that can be dismissed on
+grounds of regional difference; it is a within-city comparison that
+isolates the cost premium attached to the public financing model
+itself.</p>
+<p>The 1111 Sutter Street project illustrates the alternative. A
+mixed-income development of 303 units — including 101 affordable
+apartments — at $700,000 per unit total, with approximately $54 million
+in state tax credits and loans covering 25 percent of the $220 million
+total cost. The public subsidy per affordable unit: $54 million divided
+by 101 affordable units equals approximately $534,000 — substantially
+less than the $1,032,000 average total cost of a fully public affordable
+unit in our dataset, and less than half the cost of the 1979 Mission
+project's family units. The remaining 202 market-rate units are financed
+entirely with private capital, contribute to the city's overall housing
+supply, and generate property tax revenue that partially offsets the
+public subsidy invested. The private capital does not displace the
+public mission; it amplifies it.</p>
+<p>This is the arithmetic at the heart of what Ezra Klein and Derek
+Thompson, in their book <em>Abundance</em>, describe as the moderate
+left's emerging position on housing: not that the market should replace
+public investment in housing, but that targeted public incentives can
+leverage private capital to produce more housing, for more income
+levels, at lower cost per public dollar spent, than the fully public
+model currently achieves. The data supports that argument. Whether the
+political will exists to act on it is a question for the subsequent
+chapter.</p>
 <h3
-id="hypothesis-2-colorado-has-unusually-streamlined-or-consolidated-lihtc-funding-requirements">Hypothesis
-2: Colorado Has Unusually Streamlined or Consolidated LIHTC Funding
-Requirements</h3>
-<p>Ward repeatedly emphasizes that the “union of all requirements”
-across multiple funding sources is a primary driver of LIHTC cost
-escalation — every funding source adds prescriptive design, labor, and
-amenity requirements that stack multiplicatively. California projects
-routinely carry <strong>six to eight funding sources</strong>, each with
-independent requirements.</p>
-<p>Colorado’s CHFA (Colorado Housing and Finance Authority) administers
-both federal and state LIHTC. Colorado does not have a large independent
-municipal affordable housing funding apparatus comparable to LAHD or the
-San Francisco Mayor’s Office of Housing. This means <strong>Colorado
-LIHTC projects may typically have shallower capital stacks with fewer
-independent funding sources</strong>, resulting in fewer layered
-requirements.</p>
-<p>If a Colorado LIHTC project can be completed with two or three
-funding sources rather than six or eight, the prescriptive requirement
-burden drops dramatically. This would directly reduce architectural and
-engineering costs, eliminate certain labor compliance requirements, and
-reduce the complexity of the design process itself.</p>
-<p><strong>Why this is plausible</strong>: Colorado’s affordable housing
-ecosystem is less mature and less well-capitalized than California’s,
-which perversely may mean developers face less requirement accretion.
-The absence of a large municipal funding apparatus that would otherwise
-add requirements is itself a structural feature.</p>
-<p><strong>Why this needs testing</strong>: It is possible that Colorado
-simply has fewer very-low-income projects requiring deep subsidy stacks,
-and that the projects in the RAND sample represent a less severely
-income-targeted population than California’s, rather than a genuinely
-streamlined compliance environment.</p>
-<hr />
-<h3
-id="hypothesis-3-colorado-lihtc-developers-have-adopted-more-standardized-or-industrialized-construction-approaches">Hypothesis
-3: Colorado LIHTC Developers Have Adopted More Standardized or
-Industrialized Construction Approaches</h3>
-<p>Some state LIHTC markets have developed what practitioners call
-“developer industrialization” — a small number of repeat developers who
-build essentially the same building repeatedly, achieving cost
-reductions through repetition, established subcontractor relationships,
-pre-negotiated material pricing, and design reuse. This is more common
-in less competitive, less politically complex markets where the same
-developers win allocations repeatedly.</p>
-<p>Colorado’s LIHTC market, administered through CHFA with a relatively
-concentrated allocation pool, may have fostered a small group of
-sophisticated repeat developers who have effectively industrialized
-their production process. These developers may be building
-near-identical projects in different locations, reusing design drawings,
-using the same subcontractors at pre-negotiated rates, and achieving
-genuine economies of repetition that are not available to California
-developers who face idiosyncratic site-specific requirements from
-multiple funding sources on every project.</p>
-<p><strong>Why this is plausible</strong>: The podcast transcript notes
-Ward has been contacted by people asking “what is going on in Colorado”
-— suggesting the result is recognized as unusual by practitioners, not
-just researchers. Practitioner recognition often points toward
-structural market features like developer concentration.</p>
-<p><strong>Why this needs testing</strong>: RAND’s sample of Colorado
-LIHTC projects may be small enough that a few unusually efficient
-developers could drive the average down. The finding could be real but
-not generalizable if it reflects two or three highly efficient operators
-rather than a systemic feature of Colorado’s market.</p>
-<hr />
-<h3
-id="hypothesis-4-colorados-regulatory-environment-produces-less-schedule-driven-cost-inflation-for-lihtc-projects-specifically">Hypothesis
-4: Colorado’s Regulatory Environment Produces Less Schedule-Driven Cost
-Inflation for LIHTC Projects Specifically</h3>
-<p>The RAND report establishes that longer timelines are a primary
-driver of higher costs, with pre-development time in California more
-than twice that of Texas. If Colorado’s approval and permitting
-processes for LIHTC projects are faster than for market-rate projects —
-perhaps because LIHTC projects receive expedited processing, by-right
-treatment, or preferential permitting — then the timeline cost driver
-would work <strong>in reverse</strong> for LIHTC versus market rate in
-Colorado.</p>
-<p>Some Colorado municipalities have adopted fast-track processes for
-affordable housing specifically, which could mean that the
-pre-development and construction timelines for LIHTC projects in
-Colorado are genuinely shorter than for market-rate projects, while in
-California and Texas the reverse is true (LIHTC projects take longer due
-to compliance complexity).</p>
-<p><strong>Why this is plausible</strong>: Colorado Governor Polis has
-championed housing reform aggressively, and some Colorado cities have
-adopted affordable housing priority processing. If this produces
-meaningfully shorter timelines for LIHTC projects specifically, it could
-directly translate into hard cost savings.</p>
-<p><strong>Limitation</strong>: RAND’s timeline data is only available
-for market-rate projects (Figure 3.4), so there is no direct timeline
-comparison for LIHTC projects across states in the existing research.
-This is itself a significant data gap.</p>
-<hr />
-<h3
-id="hypothesis-5-selection-effects-in-the-rand-colorado-lihtc-sample">Hypothesis
-5: Selection Effects in the RAND Colorado LIHTC Sample</h3>
-<p>This is the most cautious hypothesis and the one Ward would likely
-want to test first as a researcher. The Colorado LIHTC sample in RAND’s
-data may be too small or geographically concentrated to support a robust
-conclusion about systemic cost differences. If the Colorado LIHTC sample
-is dominated by projects in lower-cost suburban Denver locations, or if
-it happens to include several unusually efficient projects built by a
-single developer, the finding could be a statistical artifact rather
-than a structural phenomenon.</p>
-<p>The RAND report acknowledges sample size limitations and notes that
-some estimates “do not reach the level of statistical significance at
-the 95 percent confidence level.” Given that Colorado LIHTC projects
-represent a subset of an already modest overall LIHTC sample of 88
-projects across three states, the Colorado-specific LIHTC cell may
-contain relatively few observations.</p>
-<p><strong>Why this must be taken seriously</strong>: Ward himself
-acknowledges uncertainty about the Colorado finding in the podcast. The
-fact that it is described as a “mystery” rather than a robust finding
-suggests the research team is appropriately cautious about its
-generalizability.</p>
-<hr />
-<h2 id="iv.-research-design-for-rand-or-a-similar-organization">IV.
-Research Design for RAND or a Similar Organization</h2>
-<p>Given that a conclusive answer cannot be reached from existing data,
-the following research program would be capable of resolving the
-question rigorously.</p>
-<hr />
-<h3 id="study-1-expanded-colorado-lihtc-cost-census">Study 1: Expanded
-Colorado LIHTC Cost Census</h3>
-<p><strong>Purpose</strong>: Determine whether the RAND finding holds
-across a larger, more representative sample of Colorado LIHTC projects,
-or whether it reflects sample composition artifacts.</p>
-<p><strong>Data Sources</strong>: - Complete LIHTC cost certification
-data from CHFA for all completed projects from 2015-2024 (public records
-request, same methodology as RAND’s existing LIHTC data collection) -
-Supplementary data from Colorado state LIHTC programs - Cross-reference
-with CHFA’s own project databases for building type, location, developer
-identity, and funding source composition</p>
-<p><strong>Key Variables to Collect</strong>: - Hard costs, soft costs,
-land costs per NRSF and per unit - Building type and number of stories -
-Geographic location (Denver metro vs. other Colorado markets) - Number
-of funding sources in capital stack - Identity of developer (to test for
-developer concentration effects) - Number of units and average unit size
-- Project timeline (predevelopment and construction phases separately) -
-Whether prevailing wage was paid - Number and identity of funding
-sources</p>
-<p><strong>Analytic Approach</strong>: - Replicate RAND’s regression
-model on the expanded Colorado sample to test whether the
-market-rate/LIHTC cost inversion persists with more data - Decompose the
-Colorado LIHTC cost advantage into building type, location, unit size,
-and developer identity components to identify how much each explains -
-Test whether the finding is robust to exclusion of any single developer
-or geographic cluster</p>
-<p><strong>Sample Size Target</strong>: Minimum 60-80 Colorado LIHTC
-projects to support meaningful subgroup analysis</p>
-<p><strong>Timeline</strong>: 12-18 months for data collection and
-cleaning given the RAND team’s established methodology</p>
-<hr />
-<h3
-id="study-2-capital-stack-complexity-and-requirement-accretion-analysis">Study
-2: Capital Stack Complexity and Requirement Accretion Analysis</h3>
-<p><strong>Purpose</strong>: Directly test whether Colorado LIHTC
-projects have simpler capital stacks and fewer prescriptive requirements
-than California and Texas projects, and quantify the cost implications
-of requirement differences.</p>
-<p><strong>Data Sources</strong>: - LIHTC cost certifications (already
-partially available from RAND’s existing data) - Funding source
-documentation for each project (loan agreements, grant agreements,
-regulatory agreements) obtained through public records requests to CHFA,
-CDOH, and comparable California and Texas agencies - Interviews with
-20-30 LIHTC developers who have built in at least two of the three
-states (purposive sample targeting developers with cross-state
-experience) - Design standards documents from major funding sources in
-each state (LAHD, LACDA, CHFA, TDHCA)</p>
-<p><strong>Key Constructs to Measure</strong>: - Number of funding
-sources per project by state - Number of distinct design/labor/amenity
-requirements per funding source - Total number of non-overlapping
-requirements per project (the “union” measure Ward describes) -
-Architectural and engineering fee as a percentage of hard costs by state
-and funding source count - Presence/absence of prevailing wage
-requirements by funding source</p>
-<p><strong>Analytic Approach</strong>: - Construct a “requirement burden
-index” for each project based on the count and stringency of funding
-source requirements - Regress hard costs and A&amp;E fees on the
-requirement burden index while controlling for building type, location,
-and timeline - Compare the distribution of requirement burden index
-values across states to test whether Colorado LIHTC projects
-systematically carry lower requirement burdens - Use developer
-interviews to validate quantitative findings and identify requirements
-that practitioners identify as most cost-consequential</p>
-<p><strong>Novel Contribution</strong>: This would be the first study to
-directly quantify the cost of requirement accretion in LIHTC capital
-stacks, addressing a gap that Ward identifies in the podcast as
-important but unmeasured.</p>
-<hr />
-<h3
-id="study-3-lihtc-production-timeline-comparison-across-states">Study 3:
-LIHTC Production Timeline Comparison Across States</h3>
-<p><strong>Purpose</strong>: Test whether Colorado LIHTC projects have
-shorter timelines than market-rate projects in the same state, and
-whether timeline differences explain the hard cost inversion.</p>
-<p><strong>Data Sources</strong>: - CHFA project approval records
-(application date, award date, construction start date,
-placed-in-service date) for all Colorado LIHTC projects 2015-2024 -
-Comparable timeline data from California Tax Credit Allocation Committee
-(TCAC) and Texas Department of Housing and Community Affairs (TDHCA) -
-RAND’s existing market-rate timeline data for Colorado and Texas (17
-California, 7 Colorado, 26 Texas projects)</p>
-<p><strong>Key Variables</strong>: - Predevelopment time: LIHTC
-application date to construction start - Construction time: construction
-start to placed-in-service date - Total timeline: application to
-placed-in-service - Whether project received expedited/priority
-processing - Municipality of project location</p>
-<p><strong>Analytic Approach</strong>: - Compare LIHTC and market-rate
-timelines within each state using the same regression framework as
-RAND’s existing timeline analysis - Test whether Colorado LIHTC projects
-have shorter timelines than Colorado market-rate projects (which would
-be consistent with fast-track processing for affordable housing) -
-Estimate the cost implications of observed timeline differences using
-RAND’s established elasticity of cost to production time (~$1,284 per
-unit per month) - Map timeline data against municipal fast-track
-affordable housing policies to test for a policy-timeline-cost causal
-chain</p>
-<p><strong>Key Test</strong>: If Colorado LIHTC predevelopment times are
-shorter than Colorado market-rate predevelopment times, while the
-reverse is true in California and Texas, this would strongly support the
-regulatory fast-track hypothesis and explain the hard cost
-inversion.</p>
-<hr />
-<h3
-id="study-4-developer-concentration-and-industrialization-analysis">Study
-4: Developer Concentration and Industrialization Analysis</h3>
-<p><strong>Purpose</strong>: Test whether Colorado’s LIHTC cost
-efficiency is driven by a small number of highly efficient repeat
-developers using standardized construction approaches, versus being a
-market-wide phenomenon.</p>
-<p><strong>Data Sources</strong>: - CHFA allocation records identifying
-developer entity for all Colorado LIHTC projects 2010-2024 - Cost
-certification data linked to developer identity - Structured interviews
-with the five largest Colorado LIHTC developers by unit count - Site
-visits to three to five Colorado LIHTC projects identified as low-cost
-outliers to assess construction approach and building configuration</p>
-<p><strong>Key Questions</strong>: - What share of Colorado LIHTC units
-are produced by the top five developers? - Do high-volume repeat
-developers in Colorado show meaningfully lower costs than lower-volume
-developers in the same state? - Do Colorado LIHTC developers reuse
-design drawings across projects? Do they use standardized unit plans or
-pre-approved building types? - What is the nature of subcontractor
-relationships — are they long-term repeat relationships with negotiated
-pricing, or competitive bid procurement on each project?</p>
-<p><strong>Analytic Approach</strong>: - Calculate a
-Herfindahl-Hirschman Index for developer concentration in Colorado’s
-LIHTC market versus California and Texas - Regress per-NRSF hard costs
-on developer volume (cumulative units built) within Colorado to test for
-learning curve or scale effects - Compare cost distributions between
-high-volume and low-volume Colorado LIHTC developers - Use interview and
-site visit data to construct qualitative case studies of the most
-efficient developers’ production processes</p>
-<p><strong>Benchmark</strong>: Compare Colorado developer concentration
-and repeat-developer cost premiums to findings from analogous research
-in manufactured housing and modular construction where industrialization
-effects are well-documented.</p>
-<hr />
-<h3
-id="study-5-quasi-experimental-test-using-colorados-2022-energy-efficiency-law">Study
-5: Quasi-Experimental Test Using Colorado’s 2022 Energy Efficiency
-Law</h3>
-<p><strong>Purpose</strong>: Use Colorado’s 2022 passage of HB 22-1362
-(which moved Colorado toward California-style energy efficiency
-requirements) as a natural experiment to test whether stricter energy
-requirements increase LIHTC costs and whether Colorado’s pre-2022 lower
-requirements explain part of the cost advantage.</p>
-<p><strong>Design</strong>: - Identify Colorado LIHTC projects that
-broke ground before versus after the new requirements took effect -
-Compare hard costs for pre- and post-requirement projects, controlling
-for building type, location, and timeline - Use Texas projects as a
-control group (no equivalent policy change) to implement a
-difference-in-differences design</p>
-<p><strong>Identification Strategy</strong>: - Treatment: Colorado LIHTC
-projects subject to new energy efficiency requirements - Control:
-Colorado LIHTC projects not subject to new requirements (pre-2022
-construction start) and Texas LIHTC projects throughout - Key
-assumption: absent the policy change, Colorado and Texas LIHTC cost
-trends would have continued in parallel</p>
-<p><strong>Expected Finding</strong>: If energy efficiency requirements
-meaningfully increase costs, post-2022 Colorado LIHTC projects should
-show higher hard costs relative to the pre-2022 baseline and relative to
-Texas, narrowing or eliminating Colorado’s cost advantage. If no such
-effect is observed, energy efficiency requirements are not a primary
-driver of the Colorado anomaly.</p>
-<p><strong>Timeline</strong>: This study requires data from 2023-2026
-completions to have sufficient post-treatment observations, making it a
-3-5 year research horizon.</p>
-<hr />
-<h2 id="v.-synthesis-and-priority-sequencing">V. Synthesis and Priority
-Sequencing</h2>
-<p>If RAND were to pursue this research agenda, the logical sequencing
-would be:</p>
-<p><strong>Phase 1 (Years 1-2)</strong>: Studies 1 and 3 — expanded cost
-census and timeline comparison. These use data that is largely already
-available through public records and can be collected using RAND’s
-established methodology. They would quickly establish whether the
-finding is robust (Study 1) and whether timeline differences are a
-primary mechanism (Study 3).</p>
-<p><strong>Phase 2 (Years 2-3)</strong>: Study 2 — capital stack and
-requirement accretion analysis. This is the most novel and
-policy-relevant study but requires the most intensive data collection
-(obtaining and coding funding source requirement documents). It should
-follow confirmation of the core finding from Phase 1.</p>
-<p><strong>Phase 3 (Years 2-4)</strong>: Study 4 — developer
-concentration analysis. This can run partially in parallel with Phase 2
-using CHFA administrative data and targeted interviews. It addresses the
-most important alternative explanation (sample selection via developer
-concentration) and could be incorporated into the Phase 1 report as a
-robustness check if developer identity data are collected early.</p>
-<p><strong>Phase 4 (Years 3-5)</strong>: Study 5 — natural experiment
-using the 2022 energy efficiency law. This is the most methodologically
-rigorous study but requires the longest time horizon to accumulate
-post-treatment observations. It would produce the strongest causal
-evidence on one specific mechanism and represents the kind of
-policy-relevant quasi-experimental work Ward mentions pursuing in the
-podcast.</p>
-<hr />
-<h2 id="vi.-what-the-answer-would-mean-for-policy">VI. What the Answer
-Would Mean for Policy</h2>
-<p>The stakes of resolving this question extend well beyond academic
-interest. The RAND report calculates that if California had Colorado’s
-LIHTC production costs, the same $1.25 billion in recent state spending
-would have produced <strong>more than four times as many units</strong>.
-If the research program above identifies replicable structural features
-of Colorado’s approach — whether simpler capital stacks, faster
-timelines for affordable projects, developer industrialization, or some
-combination — those features become <strong>directly actionable policy
-targets</strong> for California, New York, and other high-cost
-states.</p>
-<p>Ward is correct that Colorado represents the most promising near-term
-opportunity to extract generalizable lessons about efficient publicly
-subsidized housing production. The research design outlined here would
-give RAND or a similar organization the evidence base to make those
-lessons actionable at scale.</p>
+id="gap-three-the-factory-built-horizon-what-substitution-could-deliver"><strong>Gap
+Three: The Factory-Built Horizon — What Substitution Could
+Deliver</strong></h3>
+<p>The third gap is temporal — it exists between what current
+construction methods cost and what emerging factory-built alternatives
+can deliver — and it is the gap that most clearly illustrates the
+operation of the substitution effect in economic theory. When the
+relative price of a production input rises sufficiently above its
+alternatives, rational producers substitute toward the cheaper
+alternative. This is not a theoretical prediction; it is an observed
+regularity in virtually every industry that has undergone technological
+disruption. The question for California's housing market is not whether
+factory-built housing represents a viable lower-cost alternative to
+conventional stick-built construction — it demonstrably does — but
+whether the policy environment will allow the substitution to occur at
+the scale the cost signal demands.</p>
+<p>The evidence that factory-built housing can dramatically reduce
+per-unit costs in the Bay Area is no longer theoretical. Danny Haber's
+company, oWOW, has already built a 236-unit market-rate tower at 1510
+Webster Street in Oakland using mass timber and prefabricated
+standardized components, assembled on site in 65 days, at a total cost
+of approximately $425,000 per unit. Full floors of the building were
+installed in as little as one day. The company is breaking ground on 284
+affordable apartments in downtown Oakland at 1523 Harrison Street
+targeting a per-unit cost, with LIHTC tax credits applied, of
+approximately $350,000. It has also won tax credit allocations for 185
+affordable units at 960 Howard Street in San Francisco.</p>
+<p>Three hundred and fifty thousand dollars per affordable unit, with no
+gap financing. In the Bay Area. In 2025.</p>
+<p>To appreciate the significance of this figure, set it against the
+context established earlier in this chapter. The 1979 Mission project —
+also in San Francisco, also publicly supported, also targeting
+low-income households — carries a TDC of $1,047,063 per unit for the
+family component, and $958,636 per unit for the PSH component, with free
+land and zero parking requirements. The oWOW figure is one-third of the
+1979 Mission figure, achieved without a land dedication, without city
+gap financing, and without the multi-year predevelopment process that
+MOHCD's evaluation documents suggest will extend well into the late
+2020s before 1979 Mission reaches construction.</p>
+<p>The mechanism behind oWOW's cost structure involves four interlocking
+strategies that, together, address nearly every cost driver that RAND
+and the Terner Center identify as inflating conventional project costs.
+First, prefabricated standardized components and mass timber
+dramatically compress the on-site construction phase, eliminating the
+carrying costs that accumulate during California's average 21-month
+construction timeline. Second, vertical integration — combining
+architect, engineer, contractor, and developer functions within a single
+firm — eliminates the fragmented profit stacking that oWOW president
+Andy Ball describes with precision: "Typically, in construction, you
+have a separate architect, engineer, contractor and developer. If each
+one of those is representing their separate profits, they are going to
+protect their interests." The RAND data on San Francisco Bay Area
+architectural and engineering fees for LIHTC projects — averaging
+$24,943 per unit, more than five times the Texas figure — reflects
+exactly the cost of that fragmentation. oWOW's internalization of these
+functions removes the category. Third, the no-gap-financing thesis — if
+construction costs are low enough that LIHTC equity alone covers the
+capital stack, the entire administrative premium that Ben Metcalf
+quantifies at $20,000 per financing layer simply does not arise. Fourth,
+the for-profit efficiency culture applied to affordable product: a
+developer who cannot rely on gap financing backstops has every incentive
+to minimize cost; a developer whose projects are routinely completed
+with six or eight public financing sources has, historically, had those
+incentives partially cushioned.</p>
+<p>The nonprofit sector is pursuing its own version of this
+substitution. Mercy Housing California's 1633 Valencia Street project —
+145 units of supportive senior housing in San Francisco's Mission
+District — used a construction method called design-build, which unifies
+design and construction teams from the earliest stages of project
+development to reduce coordination costs, shorten timelines, and
+eliminate the adversarial dynamics that conventional sequential
+design-bid-build processes often produce. The target per-unit cost, with
+tax credits: $530,000. That is roughly half the San Francisco average
+for publicly financed affordable projects, achieved by a nonprofit
+developer operating within the conventional LIHTC framework, through
+process reform alone — without factory production, without vertical
+integration, and without abandoning the community-serving mission that
+distinguishes nonprofit affordable developers from their market-rate
+counterparts. Tiffany Bohee, Mercy Housing California's president,
+described the urgency driving this experimentation simply: "There's
+definitely a sense of urgency when it comes to bringing costs down. It's
+forcing us all in this space to be very creative."</p>
+<p>The barriers preventing factory-built housing from scaling to the
+level the cost signal demands are well-documented by the Terner Center's
+March 2026 white paper on the subject. The barriers are not technical —
+the technology works, as 1510 Webster Street demonstrates. They are
+institutional. The Low Income Housing Tax Credit program, the primary
+financing vehicle for affordable housing production in the United
+States, was designed around the sequencing of conventional stick-built
+construction, where significant costs are incurred on site as physical
+construction progresses, and financing is disbursed as on-site
+milestones are achieved. Factory-built housing inverts this sequence:
+significant costs — factory deposits, off-site production expenses,
+module fabrication — are incurred before any on-site work begins.
+LIHTC's disbursement structure, calibrated to the stick-built sequence,
+forces FBH developers to bridge factory costs with expensive interim
+financing that conventional stick-built developers do not require.</p>
+<p>More specifically, LIHTC awards require developers to begin on-site
+construction within six months of credit award — a "shovel-ready"
+requirement designed to prevent developers from sitting on tax credit
+allocations without building. For modular construction, where the
+building is substantially fabricated off site before the on-site
+assembly phase begins, this rule is perversely counterproductive: it
+forces a project into nominal "construction" commencement before the
+factory production that will constitute the bulk of physical
+construction activity has been completed. The requirement does not
+prevent factory-built housing from being built, but it forces developers
+into a compliance dance that adds timeline complexity, legal costs, and
+lender uncertainty — the frictions that, in a capital-intensive industry
+with thin margins, are often sufficient to tip a borderline project from
+viable to infeasible.</p>
+<p>The California Tax Credit Allocation Committee and California Debt
+Limit Allocation Committee, the state agencies that administer LIHTC and
+tax-exempt bond financing respectively, operate on timelines and
+readiness standards calibrated to conventional construction. As one
+industry expert quoted in the Terner white paper put it: "There's this
+whole development timeline that we have to fall into that is from a
+stick-built construction world. There is very little flexibility for the
+types of situations that we run into with modular projects around
+factory availability, around deposits, around all the uncertainty that's
+wrapped up in our world." The competitive procurement requirements that
+govern how public money is spent create an additional friction: factory
+selection and general contractor selection must be conducted as separate
+competitive processes, even when established factory-GC partnerships
+already exist with proven working relationships and lower transaction
+costs. In a nascent industry where the pool of qualified factory-GC
+pairings is still small, mandatory re-bidding of known relationships
+introduces delay, uncertainty, and cost without producing the
+competitive pricing benefits the rules were designed to achieve.</p>
+<p>These are not intractable problems. They are administrative
+mismatches between rules designed for one production technology and a
+production technology that the cost signal is urgently demanding. The
+Terner Center's recommendations — modify TCAC and CDLAC timelines to
+accommodate FBH cash flow sequencing, reform the shovel-ready
+requirement to recognize off-site factory production, update LIHTC
+scoring criteria to reward cost efficiency and timeline predictability —
+are targeted, specific, and implementable without legislation. They are,
+in the language of Klein and Thompson's <em>Abundance</em>, exactly the
+kind of second-order policy reforms that unlock large gains from
+first-order reforms already achieved: California has done significant
+work on zoning and entitlement; the next frontier is the financing and
+construction architecture that governs what gets built once the zoning
+barriers have been cleared.</p>
+<h2
+id="section-3-where-markets-can-go-the-emerging-architecture-of-affordable-abundance"><strong>Section
+3: Where Markets Can Go — The Emerging Architecture of Affordable
+Abundance</strong></h2>
+<p>The argument assembled in the preceding two sections might seem to
+lead toward a pessimistic conclusion: costs are too high, gaps are too
+wide, the policy environment suppresses the very substitutions that
+could reduce costs, and the same public dollars produce fewer and fewer
+units each year. But the data assembled for this chapter does not
+support pessimism. It supports urgency — which is a different thing. The
+difference matters because urgency implies that action is possible and
+consequential, while pessimism implies that the situation is beyond the
+reach of policy. The evidence suggests the former.</p>
+<p>Consider what the San Francisco housing market looks like as of late
+2025, through the lens of the market signals this chapter has been
+tracking. The California Tax Credit Allocation Committee approved 25,781
+affordable housing units in 2025 — approximately 10,000 more than the
+previous year, a 63 percent increase attributable directly to a
+bipartisan expansion of the federal LIHTC program that increased the
+volume of credits available and simplified the debt structure required
+to access them. Roughly a quarter of those approvals are in the Bay
+Area. The supply response to a relatively modest incremental policy
+improvement is measurable within a single year.</p>
+<p>Market-rate developers — firms whose existence depends on projects
+that pencil without public subsidy backstops — are entering the
+affordable housing space, drawn by the expanded LIHTC opportunity and
+deterred by the near-paralysis of the market-rate pipeline. DM
+Development has 450 affordable units under construction at 300 De Haro
+Street in San Francisco at an estimated $480,000 per unit. Align Real
+Estate Partners and Martin Building Company together have nearly 1,200
+additional affordable units in the works in San Francisco. These are not
+mission-driven nonprofit developers with decades of community
+relationships and cross-subsidized service programs; they are businesses
+that have identified an opportunity to deploy their construction
+efficiency in a market where the financing conditions have temporarily
+aligned. Jeremy Harris of oWOW stated the calculus directly: "In the
+affordable world, there is an opportunity — we can build three times as
+much housing for the same dollars we are getting from the
+government."</p>
+<p>Three times as much housing. For the same dollars. This is not an
+ideological claim. It is a statement about productive efficiency that
+the cost data in this chapter supports: at $350,000 per unit versus
+$1,047,000 per unit, the same capital investment does indeed produce
+approximately three times as many homes. The question of whether those
+homes serve the same populations and fulfill the same long-term
+community functions as fully publicly financed nonprofit projects is
+real and requires honest engagement.</p>
+<p>Malcolm Yeung of the Chinatown Community Development Center raises
+the legitimate concern about exit strategies: for-profit developers are
+entering the affordable housing space during a period when market-rate
+development has stalled and LIHTC credits are abundant. When market
+conditions shift — when interest rates fall, when market-rate equity
+becomes available again, when the LIHTC expansion moderates — will they
+stay? LIHTC compliance periods require affordability restrictions for a
+minimum of thirty years under current law, providing structural
+protection against early conversion to market-rate use. But the deeper
+question Yeung is asking is about institutional permanence: nonprofit
+affordable developers are community anchors that reinvest developer fees
+in afterschool programs, literacy classes, tenant services, and
+neighborhood organizing. A for-profit developer distributes those fees
+to equity investors. The buildings may be identical; their relationship
+to the communities they house is not.</p>
+<p>Sharon Lai of the East Bay Asian Local Development Corporation frames
+the long-term sustainability question with equal clarity: "We are in the
+business of production and operation, so looking at the cash flow beyond
+10 years is really important. Nonprofits really need sustainable funds
+on an ongoing basis." This is a real constraint that the pure
+cost-efficiency argument does not fully address. Affordable housing is
+not simply a construction problem; it is an ongoing operational
+commitment to populations whose needs — for stability, for services, for
+community connection — extend well beyond the initial lease-up of a new
+building. Nick Friend of the Silicon Valley Housing Trust identifies the
+precise population where this tension is sharpest: the formerly
+homeless, the severely disabled, the extremely low income — "those are
+the projects that are most expensive and rely most on subsidies, and
+those are the projects that will be even harder to do going
+forward."</p>
+<p>These concerns are legitimate. They deserve weight in the policy
+conversation. But they do not constitute an argument against the
+cost-reduction agenda that this chapter's data demands. They constitute
+an argument for clarity about which tools are appropriate at which
+points on the income spectrum — and that clarity, it turns out, is
+exactly what the market signals are providing.</p>
+<p>The income ladder of housing need in San Francisco runs from zero —
+the street, the shelter, the tiny homes village that currently occupies
+the 1979 Mission site — through 30 percent AMI PSH, to 50 percent AMI
+family housing, to 60 to 80 percent AMI workforce housing, to market
+rate. At the very bottom of this ladder, where rents are set at 30
+percent AMI or below for people exiting homelessness and carrying the
+full weight of mental illness, addiction, and trauma, no private
+financing mechanism can close the gap between what tenants can pay and
+what it costs to house them. Deep public subsidy is not an option here;
+it is the only option. The debate about efficiency is entirely valid —
+the RAND counterfactual showing four times as many units for the same
+public dollars at Colorado production costs is a devastating indictment
+of California's cost structure even for this most-subsidized tier — but
+the mechanism of delivery must remain public.</p>
+<p>As one moves up the income ladder, however, the arithmetic changes.
+At 60 percent AMI — the target income level for oWOW's Oakland LIHTC
+project — rents are high enough, and construction costs low enough with
+modern methods, that LIHTC equity alone can close the financing gap
+without city gap loans, state supplemental credits, or the six-layer
+funding stacks that generate $20,000 per unit in administrative
+overhead. Mark MacDonald of DM Development, describing his company's
+450-unit project at 300 De Haro Street, frames the crossover point with
+the directness of someone running a business: "The development business
+is driven by the income we receive by constructing housing, so it's
+paramount that we keep our projects moving. We need housing of all
+stripes."</p>
+<p>Housing of all stripes. That phrase, from a market-rate developer who
+has crossed into affordable construction, captures the argument that
+this chapter has been building through its data. The housing crisis in
+San Francisco — and in California more broadly — is not one crisis. It
+is a stack of crises at different income levels, each requiring a
+somewhat different response, each sending somewhat different market
+signals, each amenable to somewhat different policy tools. The mistake
+of the last fifteen years has been to treat this stack as a single
+problem requiring a single solution — a solution that, in San
+Francisco's political culture, has defaulted to the most expensive, most
+publicly dependent, most process-laden model available, applied
+uniformly across the income spectrum regardless of whether the economics
+of a given project tier require it.</p>
+<p>The data says something different. It says that at 60 to 80 percent
+AMI, private capital with targeted LIHTC incentives can produce housing
+at $350,000 to $480,000 per unit without gap financing, freeing public
+subsidy dollars for the 30 percent AMI households who genuinely cannot
+be served any other way. It says that even within the nonprofit sector,
+process reforms like design-build can reduce costs by 40 to 50 percent,
+producing more units from the same subsidy pool. It says that
+factory-built construction can compress timelines from 21 months to 65
+days on site, eliminating an enormous component of carrying costs and
+financing drag. It says that the 60,000 units sitting approved and
+unbuilt in San Francisco's pipeline are not waiting for more public
+money — they are waiting for conditions under which the math works, and
+that creating those conditions is a policy choice, not a budgetary
+one.</p>
+<p>None of this requires abandoning the commitment to serving the
+deepest-need populations. It requires directing the tools most
+appropriate to each tier of need toward that tier, rather than applying
+the most expensive and most restrictive model to every project
+regardless of what the market signals indicate. The laws of economics
+are not hostile to affordable housing. They are indifferent — they will
+produce outcomes consistent with the incentives and constraints that
+policy establishes. For the last decade and a half in San Francisco, the
+incentives and constraints have produced a system in which publicly
+financed housing costs three to four times what comparable housing costs
+in other states, where a fixed pool of public subsidy buys one-quarter
+as many homes as it could, and where sixty thousand approved units sit
+unbuilt because the economics have been systematically destroyed by the
+very policies intended to protect affordability.</p>
+<p>The market signals have been sending a clear message throughout this
+period. The message is that costs have risen to the point where the
+system is approaching the limits of what public subsidy can sustain,
+that private capital is available for a substantial portion of the
+income spectrum if the incentive structure invites it, and that
+construction technologies exist that could dramatically reduce costs if
+the financing architecture were updated to accommodate them. Reading
+those signals, and allowing the policy response those signals demand, is
+not a concession to the market. It is a recognition that the market —
+its prices, its incentives, its substitution effects, and its productive
+efficiency — is a tool that housing policy can work with or against, but
+cannot simply ignore.</p>
+<p><em>The political history of why San Francisco has chosen, for a
+generation, to work against those signals rather than with them — and
+the emerging coalition that is beginning to challenge that choice — is
+the subject of the chapter that follows</em></p>
 </body>
 </html>
