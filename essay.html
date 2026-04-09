@@ -6,155 +6,201 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
   <title>market signals - San Fran housing</title>
   <style>
-    html {
-      line-height: 1.5;
-      font-family: Georgia, serif;
-      font-size: 20px;
-      color: #1a1a1a;
-      background-color: #fdfdfd;
-    }
+  html {
+    line-height: 1.5;
+    font-family: Georgia, serif;
+    font-size: 20px;
+    color: #1a1a1a;
+    background-color: #fdfdfd;
+  }
+  body {
+    margin: 0 auto;
+    max-width: 36em;
+    padding-left: 50px;
+    padding-right: 50px;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    hyphens: auto;
+    overflow-wrap: break-word;
+    text-rendering: optimizeLegibility;
+    font-kerning: normal;
+  }
+  @media (max-width: 600px) {
     body {
-      margin: 0 auto;
-      max-width: 36em;
-      padding-left: 50px;
-      padding-right: 50px;
-      padding-top: 50px;
-      padding-bottom: 50px;
-      hyphens: auto;
-      overflow-wrap: break-word;
-      text-rendering: optimizeLegibility;
-      font-kerning: normal;
+      font-size: 0.9em;
+      padding: 1em;
     }
-    @media (max-width: 600px) {
-      body {
-        font-size: 0.9em;
-        padding: 1em;
-      }
-      h1 {
-        font-size: 1.8em;
-      }
+    h1 {
+      font-size: 1.8em;
     }
-    @media print {
-      body {
-        background-color: transparent;
-        color: black;
-        font-size: 12pt;
-      }
-      p, h2, h3 {
-        orphans: 3;
-        widows: 3;
-      }
-      h2, h3, h4 {
-        page-break-after: avoid;
-      }
+  }
+  @media print {
+    body {
+      background-color: transparent;
+      color: black;
+      font-size: 12pt;
     }
-    p {
-      margin: 1em 0;
+    p, h2, h3 {
+      orphans: 3;
+      widows: 3;
     }
-    a {
-      color: #1a1a1a;
+    h2, h3, h4 {
+      page-break-after: avoid;
     }
-    a:visited {
-      color: #1a1a1a;
-    }
-    img {
-      max-width: 100%;
-    }
-    h1, h2, h3, h4, h5, h6 {
-      margin-top: 1.4em;
-    }
-    h5, h6 {
-      font-size: 1em;
-      font-style: italic;
-    }
-    h6 {
-      font-weight: normal;
-    }
-    ol, ul {
-      padding-left: 1.7em;
-      margin-top: 1em;
-    }
-    li > ol, li > ul {
-      margin-top: 0;
-    }
-    blockquote {
-      margin: 1em 0 1em 1.7em;
-      padding-left: 1em;
-      border-left: 2px solid #e6e6e6;
-      color: #606060;
-    }
-    code {
-      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
-      font-size: 85%;
-      margin: 0;
-    }
-    pre {
-      margin: 1em 0;
-      overflow: auto;
-    }
-    pre code {
-      padding: 0;
-      overflow: visible;
-      overflow-wrap: normal;
-    }
-    .sourceCode {
-     background-color: transparent;
-     overflow: visible;
-    }
-    hr {
-      background-color: #1a1a1a;
-      border: none;
-      height: 1px;
-      margin: 1em 0;
-    }
-    table {
-      margin: 1em 0;
-      border-collapse: collapse;
-      width: 100%;
-      overflow-x: auto;
-      display: block;
-      font-variant-numeric: lining-nums tabular-nums;
-    }
-    table caption {
-      margin-bottom: 0.75em;
-    }
-    tbody {
-      margin-top: 0.5em;
-      border-top: 1px solid #1a1a1a;
-      border-bottom: 1px solid #1a1a1a;
-    }
-    th {
-      border-top: 1px solid #1a1a1a;
-      padding: 0.25em 0.5em 0.25em 0.5em;
-    }
-    td {
-      padding: 0.125em 0.5em 0.25em 0.5em;
-    }
-    header {
-      margin-bottom: 4em;
-      text-align: center;
-    }
-    #TOC li {
-      list-style: none;
-    }
-    #TOC ul {
-      padding-left: 1.3em;
-    }
-    #TOC > ul {
-      padding-left: 0;
-    }
-    #TOC a:not(:hover) {
-      text-decoration: none;
-    }
-    code{white-space: pre-wrap;}
-    span.smallcaps{font-variant: small-caps;}
-    span.underline{text-decoration: underline;}
-    div.column{display: inline-block; vertical-align: top; width: 50%;}
-    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
-    ul.task-list{list-style: none;}
-    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
-  </style>
-</head>
+  }
+  p {
+    margin: 1em 0;
+  }
+  a {
+    color: #1a1a1a;
+  }
+  a:visited {
+    color: #1a1a1a;
+  }
+  img {
+    max-width: 100%;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    margin-top: 1.4em;
+  }
+  h5, h6 {
+    font-size: 1em;
+    font-style: italic;
+  }
+  h6 {
+    font-weight: normal;
+  }
+  ol, ul {
+    padding-left: 1.7em;
+    margin-top: 1em;
+  }
+  li > ol, li > ul {
+    margin-top: 0;
+  }
+  blockquote {
+    margin: 1em 0 1em 1.7em;
+    padding-left: 1em;
+    border-left: 2px solid #e6e6e6;
+    color: #606060;
+  }
+  code {
+    font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+    font-size: 85%;
+    margin: 0;
+  }
+  pre {
+    margin: 1em 0;
+    overflow: auto;
+  }
+  pre code {
+    padding: 0;
+    overflow: visible;
+    overflow-wrap: normal;
+  }
+  .sourceCode {
+    background-color: transparent;
+    overflow: visible;
+  }
+  hr {
+    background-color: #1a1a1a;
+    border: none;
+    height: 1px;
+    margin: 1em 0;
+  }
+  table {
+    margin: 1em 0;
+    border-collapse: collapse;
+    width: 100%;
+    overflow-x: auto;
+    display: block;
+    font-variant-numeric: lining-nums tabular-nums;
+  }
+  table caption {
+    margin-bottom: 0.75em;
+  }
+  tbody {
+    margin-top: 0.5em;
+    border-top: 1px solid #1a1a1a;
+    border-bottom: 1px solid #1a1a1a;
+  }
+  th {
+    border-top: 1px solid #1a1a1a;
+    padding: 0.25em 0.5em 0.25em 0.5em;
+  }
+  td {
+    padding: 0.125em 0.5em 0.25em 0.5em;
+  }
+  header {
+    margin-bottom: 4em;
+    text-align: center;
+  }
+  #TOC li {
+    list-style: none;
+  }
+  #TOC ul {
+    padding-left: 1.3em;
+  }
+  #TOC > ul {
+    padding-left: 0;
+  }
+  #TOC a:not(:hover) {
+    text-decoration: none;
+  }
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+  .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+
+  /* ——— References Section ——— */
+  #references {
+    margin-top: 3em;
+    padding-top: 1.5em;
+    border-top: 2px solid #1a1a1a;
+  }
+  #references h2 {
+    font-size: 1.1em;
+    font-variant: small-caps;
+    letter-spacing: 0.05em;
+    margin-top: 0;
+    margin-bottom: 0.8em;
+    color: #1a1a1a;
+  }
+  #references ol {
+    padding-left: 1.7em;
+    margin-top: 0.5em;
+  }
+  #references li {
+    margin-bottom: 1em;
+    font-size: 0.88em;
+    line-height: 1.55;
+    color: #2a2a2a;
+  }
+  #references li .ref-title {
+    font-style: italic;
+  }
+  #references li .ref-source {
+    font-weight: bold;
+    font-style: normal;
+  }
+  #references a {
+    color: #2c5f8a;
+    word-break: break-all;
+    text-decoration: none;
+    border-bottom: 1px dotted #2c5f8a;
+  }
+  #references a:visited {
+    color: #5a3e7a;
+    border-bottom-color: #5a3e7a;
+  }
+  #references a:hover {
+    color: #1a3f5c;
+    border-bottom: 1px solid #1a3f5c;
+  }
+</style>
+  </head>
 <body>
 <h1
 id="what-the-market-is-telling-us-price-signals-construction-costs-and-the-widening-gap-between-what-housing-costs-and-what-it-can-afford-to-cost"><strong>What
@@ -845,5 +891,93 @@ cannot simply ignore.</p>
 generation, to work against those signals rather than with them — and
 the emerging coalition that is beginning to challenge that choice — is
 the subject of the chapter that follows</em></p>
+<hr>
+
+<section id="references">
+  <h2>References Used by Claude</h2>
+  <p style="font-size:0.85em; color:#555; margin-top:0; margin-bottom:1.2em;">
+    The following sources were consulted and cited in the preparation of this essay.
+    Readers wishing to examine any source directly may follow the links below.
+  </p>
+  <ol>
+
+    <li>
+      <span class="ref-source">Pew Research / Arnold Ventures</span> —
+      <span class="ref-title">Austin's Surge of New Housing Construction Drove Down Rents</span>
+      (March 18, 2026)<br>
+      <a href="https://www.pew.org/en/research-and-analysis/articles/2026/03/18/austins-surge-of-new-housing-construction-drove-down-rents"
+         target="_blank" rel="noopener noreferrer">
+        https://www.pew.org/en/research-and-analysis/articles/2026/03/18/austins-surge-of-new-housing-construction-drove-down-rents
+      </a>
+    </li>
+
+    <li>
+      <span class="ref-source">Vox</span> —
+      <span class="ref-title">Ezra Klein &amp; Derek Thompson: Abundance — Criticism and Context</span><br>
+      <a href="https://www.vox.com/politics/405063/ezra-klein-thompson-abundance-book-criticism"
+         target="_blank" rel="noopener noreferrer">
+        https://www.vox.com/politics/405063/ezra-klein-thompson-abundance-book-criticism
+      </a>
+    </li>
+
+    <li>
+      <span class="ref-source">UCLA Luskin School of Public Affairs</span> —
+      <span class="ref-title">A Divide Over the Forces Stoking Housing Prices</span><br>
+      <a href="https://luskin.ucla.edu/a-divide-over-forces-stoking-housing-prices"
+         target="_blank" rel="noopener noreferrer">
+        https://luskin.ucla.edu/a-divide-over-forces-stoking-housing-prices
+      </a>
+    </li>
+
+    <li>
+      <span class="ref-source">RAND Corporation</span> —
+      <span class="ref-title">Research Report RRA3743-1: Housing Policy Analysis</span>
+      (Research Reports series)<br>
+      <a href="https://www.rand.org/content/dam/rand/pubs/research_reports/RRA3700/RRA3743-1/RAND_RRA3743-1.pdf"
+         target="_blank" rel="noopener noreferrer">
+        https://www.rand.org/content/dam/rand/pubs/research_reports/RRA3700/RRA3743-1/RAND_RRA3743-1.pdf
+      </a>
+    </li>
+
+    <li>
+      <span class="ref-source">Terner Center for Housing Innovation / California Council</span> —
+      <span class="ref-title">Innovation in Construction Report</span><br>
+      <a href="https://californiacouncil.org/news/terner-center-releases-innovation-in-construction-report"
+         target="_blank" rel="noopener noreferrer">
+        https://californiacouncil.org/news/terner-center-releases-innovation-in-construction-report
+      </a>
+    </li>
+
+    <li>
+      <span class="ref-source">San Francisco Chronicle</span> —
+      <span class="ref-title">Affordable Housing Developer Danny Haber</span><br>
+      <a href="https://www.sfchronicle.com/realestate/article/affordable-housing-developer-danny-haber-21221384.php"
+         target="_blank" rel="noopener noreferrer">
+        https://www.sfchronicle.com/realestate/article/affordable-housing-developer-danny-haber-21221384.php
+      </a>
+    </li>
+
+    <li>
+      <span class="ref-source">GitHub / rowntreerob</span> —
+      <span class="ref-title">SF-MOHCD-gap.csv — San Francisco Mayor's Office of Housing
+      and Community Development: Gap Data</span><br>
+      <a href="https://github.com/rowntreerob/reports/blob/main/SF-MOHCD-gap.csv"
+         target="_blank" rel="noopener noreferrer">
+        https://github.com/rowntreerob/reports/blob/main/SF-MOHCD-gap.csv
+      </a>
+    </li>
+
+    <li>
+      <span class="ref-source">48 Hills</span> —
+      <span class="ref-title">The Dangerous Fantasy of Upzoning</span>
+      (December 2025)<br>
+      <a href="https://48hills.org/2025/12/the-dangerous-fantasy-of-upzoning/"
+         target="_blank" rel="noopener noreferrer">
+        https://48hills.org/2025/12/the-dangerous-fantasy-of-upzoning/
+      </a>
+    </li>
+
+  </ol>
+</section>  
 </body>
 </html>
