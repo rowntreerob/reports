@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Claude FYI Generator</title>
+<style>
+  :root {
+    --bg       : #0f1117;
+    --surface  : #1a1d27;
+    --border   : #2e3148;
+    --accent   : #7c6af7;
+    --accent2  : #5eead4;
+    --text     : #e2e8f0;
+    --muted    : #64748b;
+    --success  : #22c55e;
+    --warn     : #f59e0b;
+    --danger   : #ef4444;
+    --radius   : 8px;
+    --font     : 'Segoe UI', system-ui, sans-serif;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font);
+    min-height: 100vh;
+    padding: 24px;
+  }
+
+  h1 { font-size: 1.4rem; font-weight: 700; color: var(--accent); margin-bottom: 4px; }
+  h2 { font-size: 1rem; font-weight: 600; margin-bottom: 10px; color: var(--accent2); }
+
+  .subtitle { color: var(--muted); font-size: 0.85rem; margin-bottom: 24px; }
+
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 18px;
+    margin-bottom: 16px;
+  }
+
+  label { font-size: 0.8rem; color: var(--muted); display: block; margin-bottom: 6px; }
+
+  input[type="text"], input[type="password"], textarea, select {
+    width: 100%;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    color: var(--text);
+    padding: 10px 12px;
+    font-family: var(--font);
+    font-size: 0.9rem;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  input:focus, textarea:focus { border-color: var(--accent); }
+  textarea { resize: vertical; }
+
+  .row { display: flex; gap: 12px; align-items: flex-end; }
+  .row > * { flex: 1; }
+  .row > .shrink { flex: 0 0 auto; }
+
+  button {
+    cursor: pointer;
+    border: none;
+    border-radius: var(--radius);
+    padding: 10px 18px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    font-family: var(--font);
+    transition: opacity 0.2s, transform 0.1s;
+  }
+  button:hover { opacity: 0.88; }
+  button:active { transform: scale(0.97); }
+  button:disabled { opacity: 0.4; cursor: not-allowed; }
+
+  .btn-primary   { background: var(--accent);  color: #fff; }
+  .btn-secondary { background: var(--border);  color: var(--text); }
+  .btn-success   { background: var(--success); color: #fff; }
+  .btn-warn      { background: var(--warn);    color: #000; }
+
+  .status {
+    font-size: 0.82rem;
+    padding: 8px 12px;
+    border-radius: var(--radius);
+    margin-top: 10px;
+    display: none;
+  }
+  .status.show { display: block; }
+  .status.info    { background: #1e3a5f; color: #93c5fd; }
+  .status.success { background: #14532d; color: #86efac; }
+  .status.error   { background: #450a0a; color: #fca5a5; }
+  .status.warn    { background: #451a03; color: #fcd34d; }
+
+  .source-box {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 12px;
+    font-size: 0.8rem;
+    color: var(--muted);
+    max-height: 120px;
+    overflow-y: auto;
+    line-height: 1.5;
+    white-space: pre-wrap;
+    word-break: break-word;
+  }
+
+  .summary-output {
+    background: var(--bg);
+    border: 1px solid var(--accent);
+    border-radius: var(--radius);
+    padding: 14px;
+    font-size: 0.9rem;
+    line-height: 1.65;
+    white-space: pre-wrap;
+    word-break: break-word;
+    min-height: 80px;
+  }
+
+  .fyi-output {
+    background: var(--bg);
+    border: 1px solid var(--accent2);
+    border-radius: var(--radius);
+    padding: 14px;
+    font-size: 0.9rem;
+    line-height: 1.65;
+    white-space: pre-wrap;
+    word-break: break-word;
+    font-family: monospace;
+  }
+
+  .spinner {
+    display: inline-block;
+    width: 14px; height: 14px;
+    border: 2px solid var(--border);
+    border-top-color: var(--accent);
+    border-radius: 50%;
+    animation: spin 0.7s linear infinite;
+    vertical-align: middle;
+    margin-right: 6px;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  .tag {
+    display: inline-block;
+    font-size: 0.72rem;
+    padding: 2px 8px;
+    border-radius: 999px;
+    font-weight: 600;
+    margin-left: 8px;
+    vertical-align: middle;
+  }
+  .tag-warn    { background: #451a03; color: #fcd34d; }
+  .tag-success { background: #14532d; color: #86efac; }
+
+  .char-count { font-size: 0.75rem; color: var(--muted); text-align: right; margin-top: 4px; }
+
+  .flex-end { display: flex; justify-content: flex-end; gap: 8px; margin-top: 10px; }
+
+  details > summary {
+    cursor: pointer;
+    font-size: 0.82rem;
+    color: var(--muted);
+    margin-bottom: 6px;
+    user-select: none;
+  }
+  details[open] > summary { color: var(--text); }
+
+  hr { border: none; border-top: 1px solid var(--border); margin: 8px 0; }
+  
+  .model-note { font-size: 0.75rem; color: var(--muted); margin-top: 5px; }
+</style>
+</head>
+<body>
+
+PreviewAPIBrowser Bookmarklet → Claude API → FYI Generator
+Let me break this into a realistic implementation given your constraints.
+Architecture Decision
+Option A: Direct API call from bookmarklet (self-contained, needs API key in code)
+Option B: Local HTML tool page (bookmarklet sends text there, cleaner UX)
+I'd recommend Option B - the bookmarklet extracts text and opens your local tool, which handles the API call and formats the FYI. Keeps your API key out of the bookmarklet itself.
+
+Part 1: The Bookmarklet
+This extracts clean page text, then passes it to your local tool:
+javascriptCopyjavascript:(function(){
+  // --- Config: point this at wherever you save the HTML tool ---
+  var TOOL_URL = 'file:///C:/Users/YOU/claude-fyi-tool.html';
+  // or if you serve it locally: 'http://localhost:8080/claude-fyi-tool.html'
+
+  function extractText(){
+    // Clone body to avoid mutating the page
+    var clone = document.body.cloneNode(true);
+
+    // Remove noise elements
+    var noiseSelectors = [
+      'script','style','nav','header','footer',
+      'aside','[role="banner"]','[role="navigation"]',
+      '[role="complementary"]','.ad','.ads','.advertisement',
+      '.cookie-banner','.popup','.modal','noscript','iframe'
+    ];
+    noiseSelectors.forEach(function(sel){
+      clone.querySelectorAll(sel).forEach(function(el){ el.remove(); });
+    });
+
+    // Try to find the main content zone first
+    var contentSelectors = [
+      'article','[role="main"]','main',
+      '.article-body','.post-content','.entry-content',
+      '.story-body','.article-content','#content','#main'
+    ];
+    var contentEl = null;
+    for(var i = 0; i < contentSelectors.length; i++){
+      contentEl = clone.querySelector(contentSelectors[i]);
+      if(contentEl) break;
+    }
+    var root = contentEl || clone;
+
+    // Get text, collapse whitespace
+    var raw = root.innerText || root.textContent || '';
+    return raw
+      .replace(/\t/g,' ')
+      .replace(/ {2,}/g,' ')
+      .replace(/\n{3,}/g,'\n\n')
+      .trim();
+  }
+
+  var pageText  = extractText();
+  var pageTitle = document.title || 'Untitled';
+  var pageURL   = window.location.href;
+
+  if(!pageText || pageText.length < 100){
+    alert('Could not extract meaningful text from this page.');
+    return;
+  }
+
+  // Cap at ~12000 chars to stay well inside Claude context + API limits
+  // Roughly 3000 tokens, leaves room for prompt + response
+  var MAX_CHARS = 12000;
+  var truncated = false;
+  if(pageText.length > MAX_CHARS){
+    pageText  = pageText.substring(0, MAX_CHARS);
+    truncated = true;
+  }
+
+  // Bundle everything and post to the tool page via sessionStorage
+  // (localStorage/sessionStorage works across file:// same-origin,
+  //  and from a served page to itself)
+  var payload = JSON.stringify({
+    url      : pageURL,
+    title    : pageTitle,
+    text     : pageText,
+    truncated: truncated,
+    ts       : Date.now()
+  });
+
+  // Try sessionStorage first (works same-origin)
+  try {
+    sessionStorage.setItem('claudeFYI_payload', payload);
+    window.open(TOOL_URL, '_blank');
+  } catch(e) {
+    // Fallback: encode in URL hash (limited size, but workable for smaller pages)
+    var encoded = encodeURIComponent(payload);
+    if(encoded.length < 8000){
+      window.open(TOOL_URL + '#' + encoded, '_blank');
+    } else {
+      alert('Page text too large for URL transfer and sessionStorage blocked.\nTry serving the tool from localhost instead of file://.');
+    }
+  }
+
+})();
+Adding it as a Bookmark
+
+Create new bookmark in Chrome
+Name it something like 📋 Claude FYI
+Paste the entire javascript:(function(){...})(); block as the URL
+
+
+Part 2: The Local HTML Tool
+Save this as claude-fyi-tool.html wherever you pointed TOOL_URL:
+
+<h1>📋 Claude FYI Generator</h1>
+<p class="subtitle">Summarize a page with Claude · Format a ready-to-send FYI message</p>
+
+<!-- ── CONFIG ─────────────────────────────────────────── -->
+<div class="card">
+  <h2>⚙️ Config</h2>
+
+  <label>Anthropic API Key
+    <span id="keyStoredTag" class="tag tag-success" style="display:none">✓ saved</span>
+  </label>
+  <div class="row">
+    <input type="password" id="apiKey" placeholder="sk-ant-…" autocomplete="off">
+    <button class="btn-secondary shrink" onclick="saveKey()">Save</button>
+    <button class="btn-secondary shrink" onclick="clearKey()">Clear</button>
+  </div>
+  <p class="model-note">Stored in localStorage on this device only. Never sent anywhere except api.anthropic.com.</p>
+
+  <br>
+  <label>Model</label>
+  <select id="modelSelect">
+    <option value="claude-opus-4-5">claude-opus-4-5 (smartest)</option>
+    <option value="claude-sonnet-4-5" selected>claude-sonnet-4-5 (recommended)</option>
+    <option value="claude-haiku-4-5">claude-haiku-4-5 (fastest / cheapest)</option>
+  </select>
+
+  <br>
+  <label>Summarization Prompt (editable)</label>
+  <textarea id="systemPrompt" rows="5">You are a sharp, concise analyst. The user will give you the text content of a web page.
+
+Your job:
+1. Write a SHORT executive summary (3–5 sentences max). Lead with the single most important point.
+2. Write a TL;DR line (one sentence, ≤ 25 words).
+3. List 3–5 bullet-point key takeaways.
+
+Format your response exactly like this:
+SUMMARY:
+<your summary here>
+
+TL;DR:
+<one sentence>
+
+KEY POINTS:
+- <point>
+- <point>
+- <point></textarea>
+</div>
+
+<!-- ── PAGE SOURCE ─────────────────────────────────────── -->
+<div class="card">
+  <h2>📄 Page Source</h2>
+  <div id="sourceStatus" class="status"></div>
+
+  <label>Page URL</label>
+  <input type="text" id="pageURL" placeholder="Will be filled from bookmarklet…">
+
+  <br>
+  <label>Page Title</label>
+  <input type="text" id="pageTitle" placeholder="Will be filled from bookmarklet…">
+
+  <br>
+  <details>
+    <summary>▶ Extracted page text (click to inspect)</summary>
+    <div id="pageTextPreview" class="source-box" style="margin-top:6px">
+      No text loaded yet. Click the bookmarklet on any page first.
+    </div>
+  </details>
+  <div class="char-count" id="charCount"></div>
+
+  <hr>
+  <label style="margin-top:8px">Or paste page text manually (overrides bookmarklet input)</label>
+  <textarea id="manualText" rows="4" placeholder="Paste article text here if bookmarklet isn't available…"
+    oninput="onManualInput()"></textarea>
+</div>
+
+<!-- ── SUMMARIZE ───────────────────────────────────────── -->
+<div class="card">
+  <h2>🤖 Claude Summary</h2>
+  <button class="btn-primary" id="summarizeBtn" onclick="runSummarize()">
+    ✨ Summarize with Claude
+  </button>
+  <div id="apiStatus" class="status"></div>
+  <br>
+  <div id="summaryOutput" class="summary-output" style="display:none"></div>
+  <div class="flex-end" id="summaryActions" style="display:none">
+    <button class="btn-secondary" onclick="copySummary()">Copy summary</button>
+    <button class="btn-warn"      onclick="editSummary()">✏️ Edit before use</button>
+  </div>
+</div>
+
+<!-- ── FYI MESSAGE ─────────────────────────────────────── -->
+<div class="card" id="fyiCard" style="display:none">
+  <h2>✉️ FYI Message</h2>
+
+  <label>Recipient name / context (optional, personalizes the message)</label>
+  <input type="text" id="recipientCtx" placeholder="e.g. 'the team', 'Sarah', 'engineering leads'">
+
+  <br>
+  <label>Additional note from you (optional)</label>
+  <textarea id="senderNote" rows="2" placeholder="e.g. 'This is relevant to our Q3 planning…'"></textarea>
+
+  <br>
+  <label>Output format</label>
+  <select id="fyiFormat">
+    <option value="plain">Plain text (Slack / iMessage / email body)</option>
+    <option value="email">Email (with Subject line)</option>
+    <option value="markdown">Markdown (Notion / GitHub / Discord)</option>
+  </select>
+
+  <br>
+  <button class="btn-success" onclick="buildFYI()">📝 Build FYI Message</button>
+
+  <br>
+  <div id="fyiOutput" class="fyi-output" style="display:none; margin-top:12px"></div>
+  <div class="flex-end" id="fyiActions" style="display:none">
+    <button class="btn-secondary" onclick="copyFYI()">📋 Copy to clipboard</button>
+    <button class="btn-secondary" onclick="editFYI()">✏️ Edit</button>
+  </div>
+</div>
+
+<div style="height:40px"></div>
+
+<script>
+// ═══════════════════════════════════════════════════════════
+//  STATE
+// ═══════════════════════════════════════════════════════════
+var state = {
+  url      : '',
+  title    : '',
+  text     : '',
+  truncated: false,
+  summary  : ''
+};
+
+// ═══════════════════════════════════════════════════════════
+//  INIT – pull payload on page load
+// ═══════════════════════════════════════════════════════════
+window.addEventListener('load', function(){
+  loadKey();
+  loadPayload();
+});
+
+function loadPayload(){
+  var raw = null;
+
+  // 1. Try sessionStorage (same-origin bookmarklet)
+  try {
+    raw = sessionStorage.getItem('claudeFYI_payload');
+    if(raw) sessionStorage.removeItem('claudeFYI_payload'); // consume it
+  } catch(e){}
+
+  // 2. Try URL hash fallback
+  if(!raw && location.hash && location.hash.length > 1){
+    try { raw = decodeURIComponent(location.hash.slice(1)); } catch(e){}
+    history.replaceState(null,'',location.pathname); // clean the URL
+  }
+
+  if(!raw){
+    showStatus('sourceStatus','info','No bookmarklet data detected. You can paste text manually below.');
+    return;
+  }
+
+  try {
+    var p = JSON.parse(raw);
+    state.url      = p.url      || '';
+    state.title    = p.title    || '';
+    state.text     = p.text     || '';
+    state.truncated= p.truncated|| false;
+
+    document.getElementById('pageURL').value  = state.url;
+    document.getElementById('pageTitle').value= state.title;
+    document.getElementById('pageTextPreview').textContent = state.text;
+    document.getElementById('charCount').textContent =
+      state.text.length.toLocaleString() + ' chars loaded' +
+      (state.truncated ? ' (truncated to 12 000 — original was longer)' : '');
+
+    showStatus('sourceStatus','success',
+      '✓ Page data received from bookmarklet' +
+      (state.truncated ? ' ⚠️  Text was truncated — very long page.' : ''));
+  } catch(e){
+    showStatus('sourceStatus','error','Could not parse bookmarklet payload: ' + e.message);
+  }
+}
+
+// ═══════════════════════════════════════════════════════════
+//  MANUAL INPUT
+// ═══════════════════════════════════════════════════════════
+function onManualInput(){
+  var t = document.getElementById('manualText').value.trim();
+  if(t){
+    state.text = t;
+    document.getElementById('pageTextPreview').textContent = t;
+    document.getElementById('charCount').textContent = t.length.toLocaleString() + ' chars (manual)';
+  }
+}
+
+// ═══════════════════════════════════════════════════════════
+//  API KEY MANAGEMENT
+// ═══════════════════════════════════════════════════════════
+function saveKey(){
+  var k = document.getElementById('apiKey').value.trim();
+  if(!k){ alert('Enter an API key first.'); return; }
+  localStorage.setItem('claudeFYI_apiKey', k);
+  document.getElementById('apiKey').value = '';
+  document.getElementById('keyStoredTag').style.display = 'inline';
+  showStatus('apiStatus','success','API key saved to localStorage.');
+}
+function clearKey(){
+  localStorage.removeItem('claudeFYI_apiKey');
+  document.getElementById('apiKey').value = '';
+  document.getElementById('keyStoredTag').style.display = 'none';
+}
+function loadKey(){
+  var k = localStorage.getItem('claudeFYI_apiKey');
+  if(k){
+    document.getElementById('keyStoredTag').style.display = 'inline';
+  }
+}
+function getKey(){
+  return localStorage.getItem('claudeFYI_apiKey') ||
+         document.getElementById('apiKey').value.trim();
+}
+
+// ═══════════════════════════════════════════════════════════
+//  SUMMARIZE
+// ═══════════════════════════════════════════════════════════
+async function runSummarize(){
+  var key = getKey();
+  if(!key){
+    showStatus('apiStatus','error','No API key. Enter and save one in Config above.');
+    return;
+  }
+  var text = state.text || document.getElementById('manualText').value.trim();
+  if(!text || text.length < 50){
+    showStatus('apiStatus','error','No page text loaded. Use the bookmarklet or paste text manually.');
+    return;
+  }
+
+  var url   = document.getElementById('pageURL').value.trim();
+  var title = document.getElementById('pageTitle').value.trim();
+  var sysPr = document.getElementById('systemPrompt').value.trim();
+  var model = document.getElementById('modelSelect').value;
+
+  var userMessage = '';
+  if(title) userMessage += 'Page title: ' + title + '\n';
+  if(url)   userMessage += 'URL: ' + url + '\n\n';
+  userMessage += 'PAGE CONTENT:\n' + text;
+
+  var btn = document.getElementById('summarizeBtn');
+  btn.disabled = true;
+  btn.innerHTML = '<span class="spinner"></span> Calling Claude…';
+  showStatus('apiStatus','info','Sending request to Claude API…');
+
+  document.getElementById('summaryOutput').style.display = 'none';
+  document.getElementById('summaryActions').style.display = 'none';
+
+  try {
+    var response = await fetch('https://api.anthropic.com/v1/messages', {
+      method : 'POST',
+      headers: {
+        'Content-Type'      : 'application/json',
+        'x-api-key'         : key,
+        'anthropic-version' : '2023-06-01',
+        // Required for direct browser calls (CORS allowlisted by Anthropic for their API)
+        'anthropic-dangerous-direct-browser-access': 'true'
+      },
+      body: JSON.stringify({
+        model     : model,
+        max_tokens: 1024,
+        system    : sysPr,
+        messages  : [{ role: 'user', content: userMessage }]
+      })
+    });
+
+    if(!response.ok){
+      var errData = await response.json().catch(()=>({error:{message:'Unknown error'}}));
+      var msg = (errData.error && errData.error.message) || response.statusText;
+      throw new Error('API error ' + response.status + ': ' + msg);
+    }
+
+    var data = await response.json();
+    var summary = (data.content && data.content[0] && data.content[0].text) || '';
+
+    if(!summary){
+      throw new Error('Empty response from Claude.');
+    }
+
+    state.summary = summary;
+
+    var outEl = document.getElementById('summaryOutput');
+    outEl.textContent = summary;
+    outEl.style.display = 'block';
+    document.getElementById('summaryActions').style.display = 'flex';
+    document.getElementById('fyiCard').style.display = 'block';
+
+    showStatus('apiStatus','success',
+      '✓ Summary received — ' +
+      (data.usage ? data.usage.output_tokens + ' output tokens used' : '') );
+
+  } catch(err){
+    showStatus('apiStatus','error', err.message);
+  } finally {
+    btn.disabled = false;
+    btn.innerHTML = '✨ Summarize with Claude';
+  }
+}
+
+// ═══════════════════════════════════════════════════════════
+//  EDIT / COPY SUMMARY
+// ═══════════════════════════════════════════════════════════
+function copySummary(){
+  copyText(state.summary, 'Summary copied!');
+}
+function editSummary(){
+  var el = document.getElementById('summaryOutput');
+  el.contentEditable = 'true';
+  el.style.border = '1px solid ' + 'var(--warn)';
+  el.focus();
+  el.addEventListener('blur', function(){
+    state.summary = el.textContent;
+    el.contentEditable = 'false';
+    el.style.border = '';
+  }, {once: true});
+}
+
+// ═══════════════════════════════════════════════════════════
+//  BUILD FYI
+// ═══════════════════════════════════════════════════════════
+function buildFYI(){
+  if(!state.summary){
+    alert('Run the summarizer first.');
+    return;
+  }
+
+  var url       = document.getElementById('pageURL').value.trim()  || '(URL not set)';
+  var title     = document.getElementById('pageTitle').value.trim() || url;
+  var recipient = document.getElementById('recipientCtx').value.trim();
+  var note      = document.getElementById('senderNote').value.trim();
+  var format    = document.getElementById('fyiFormat').value;
+  var summary   = state.summary;
+
+  var fyi = '';
+
+  if(format === 'email'){
+    fyi  = 'Subject: FYI – ' + title + '\n\n';
+    if(recipient) fyi += 'Hi ' + recipient + ',\n\n';
+    fyi += 'I wanted to flag this for you — worth a read:\n\n';
+    fyi += '🔗 ' + url + '\n';
+    fyi += '(' + title + ')\n\n';
+    if(note) fyi += note + '\n\n';
+    fyi += '────────────────────────────────\n';
+    fyi += 'Here\'s a quick AI summary of what\'s at the link:\n\n';
+    fyi += summary + '\n\n';
+    fyi += '────────────────────────────────\n';
+    fyi += '(Summary generated by Claude)';
+
+  } else if(format === 'markdown'){
+    fyi  = '## 📌 FYI' + (recipient ? ' for ' + recipient : '') + '\n\n';
+    fyi += '**Here\'s something worth reading:**\n\n';
+    fyi += '> 🔗 [' + title + '](' + url + ')\n\n';
+    if(note) fyi += '_' + note + '_\n\n';
+    fyi += '---\n\n';
+    fyi += '**AI Summary (via Claude):**\n\n';
+    fyi += summary + '\n\n';
+    fyi += '---\n_Summary generated by Claude_';
+
+  } else {
+    // plain text
+    if(recipient) fyi += 'Hey ' + recipient + ' —\n\n';
+    fyi += 'FYI, here\'s something you should see:\n\n';
+    fyi += '🔗 ' + title + '\n';
+    fyi += url + '\n\n';
+    if(note) fyi += note + '\n\n';
+    fyi += '--- From Claude, a quick summary of what\'s at that link ---\n\n';
+    fyi += summary + '\n\n';
+    fyi += '-------------------------------------------------------------\n';
+    fyi += '(Summary AI-generated by Claude)';
+  }
+
+  var outEl = document.getElementById('fyiOutput');
+  outEl.textContent = fyi;
+  outEl.style.display = 'block';
+  document.getElementById('fyiActions').style.display = 'flex';
+}
+
+function copyFYI(){
+  var text = document.getElementById('fyiOutput').textContent;
+  copyText(text, '✓ FYI message copied to clipboard!');
+}
+function editFYI(){
+  var el = document.getElementById('fyiOutput');
+  el.contentEditable = 'true';
+  el.style.outline = '2px solid var(--warn)';
+  el.focus();
+  el.addEventListener('blur', function(){
+    el.contentEditable = 'false';
+    el.style.outline = '';
+  }, {once: true});
+}
+
+// ═══════════════════════════════════════════════════════════
+//  HELPERS
+// ═══════════════════════════════════════════════════════════
+function showStatus(id, type, msg){
+  var el = document.getElementById(id);
+  el.className = 'status show ' + type;
+  el.textContent = msg;
+}
+
+async function copyText(text, successMsg){
+  try {
+    await navigator.clipboard.writeText(text);
+    alert(successMsg || 'Copied!');
+  } catch(e){
+    // fallback
+    var ta = document.createElement('textarea');
+    ta.value = text;
+    ta.style.position = 'fixed';
+    ta.style.opacity  = '0';
+    document.body.appendChild(ta);
+    ta.select();
+    document.execCommand('copy');
+    document.body.removeChild(ta);
+    alert(successMsg || 'Copied!');
+  }
+}
+</script>
+<br>
+
+Setup Checklist
+Copy1. Get your Anthropic API key
+   → https://console.anthropic.com/  → API Keys → Create Key
+
+2. Save claude-fyi-tool.html somewhere on your machine
+   Suggested: C:\Users\YOU\claude-fyi-tool.html  (Windows)
+              /Users/YOU/claude-fyi-tool.html     (Mac)
+
+3. Edit the bookmarklet's TOOL_URL to match that path
+   file:///C:/Users/YOU/claude-fyi-tool.html
+   file:///Users/YOU/claude-fyi-tool.html
+
+4. Create the bookmarklet
+   → Bookmarks manager → Add new → paste full javascript:(...) as the URL
+
+5. First run: open the tool directly, enter + save your API key
+   It stores in localStorage — you only do this once
+
+6. Workflow from then on:
+   → Open any article/page
+   → Click bookmarklet
+   → Tool opens with page text pre-loaded
+   → Hit "Summarize with Claude"
+   → Fill recipient/note fields
+   → Pick format → "Build FYI Message"
+   → Copy → Paste into Slack / email / wherever
+
+Known Limitations & Notes
+IssueDetailfile:// + sessionStorageChrome blocks sessionStorage between file:// origins by default. If payload doesn't transfer, serve the tool via a simple local server (npx serve . or VS Code Live Server)Paywalled pagesBookmarklet only gets what the DOM renders — paywalled content won't be thereAPI key in localStorageFine for personal local use; don't use this on a shared/public machineCORS headerThe anthropic-dangerous-direct-browser-access: true header is the legitimate way Anthropic supports direct browser API callsVery long pagesCapped at 12k chars (~3k tokens) — enough for most articles, 
+safely inside limits
+</body>
+</html>
