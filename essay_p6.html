@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>claude_response_p6</title>
+  <style>
+   html {
+    line-height: 1.5;
+    font-family: Georgia, serif;
+    font-size: 20px;
+    color: #1a1a1a;
+    background-color: #fdfdfd;
+  }
+  body {
+    margin: 0 auto;
+    max-width: 36em;
+    padding-left: 50px;
+    padding-right: 50px;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    hyphens: auto;
+    overflow-wrap: break-word;
+    text-rendering: optimizeLegibility;
+    font-kerning: normal;
+  }
+  @media (max-width: 600px) {
+    body {
+      font-size: 0.9em;
+      padding: 1em;
+    }
+    h1 {
+      font-size: 1.8em;
+    }
+  }
+  @media print {
+    body {
+      background-color: transparent;
+      color: black;
+      font-size: 12pt;
+    }
+    p, h2, h3 {
+      orphans: 3;
+      widows: 3;
+    }
+    h2, h3, h4 {
+      page-break-after: avoid;
+    }
+  }
+  p {
+    margin: 1em 0;
+  }
+  a {
+    color: #1a1a1a;
+  }
+  a:visited {
+    color: #1a1a1a;
+  }
+  img {
+    max-width: 100%;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    margin-top: 1.4em;
+  }
+  h5, h6 {
+    font-size: 1em;
+    font-style: italic;
+  }
+  h6 {
+    font-weight: normal;
+  }
+  ol, ul {
+    padding-left: 1.7em;
+    margin-top: 1em;
+  }
+  li > ol, li > ul {
+    margin-top: 0;
+  }
+  blockquote {
+    margin: 1em 0 1em 1.7em;
+    padding-left: 1em;
+    border-left: 2px solid #e6e6e6;
+    color: #606060;
+  }
+  code {
+    font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+    font-size: 85%;
+    margin: 0;
+  }
+  pre {
+    margin: 1em 0;
+    overflow: auto;
+  }
+  pre code {
+    padding: 0;
+    overflow: visible;
+    overflow-wrap: normal;
+  }
+  .sourceCode {
+    background-color: transparent;
+    overflow: visible;
+  }
+  hr {
+    background-color: #1a1a1a;
+    border: none;
+    height: 1px;
+    margin: 1em 0;
+  }
+  table {
+    margin: 1em 0;
+    border-collapse: collapse;
+    width: 100%;
+    overflow-x: auto;
+    display: block;
+    font-variant-numeric: lining-nums tabular-nums;
+  }
+  table caption {
+    margin-bottom: 0.75em;
+  }
+  tbody {
+    margin-top: 0.5em;
+    border-top: 1px solid #1a1a1a;
+    border-bottom: 1px solid #1a1a1a;
+  }
+  th {
+    border-top: 1px solid #1a1a1a;
+    padding: 0.25em 0.5em 0.25em 0.5em;
+  }
+  td {
+    padding: 0.125em 0.5em 0.25em 0.5em;
+  }
+  header {
+    margin-bottom: 4em;
+    text-align: center;
+  }
+  #TOC li {
+    list-style: none;
+  }
+  #TOC ul {
+    padding-left: 1.3em;
+  }
+  #TOC > ul {
+    padding-left: 0;
+  }
+  #TOC a:not(:hover) {
+    text-decoration: none;
+  }
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+  .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+
+  /* ——— References Section ——— */
+  #references {
+    margin-top: 3em;
+    padding-top: 1.5em;
+    border-top: 2px solid #1a1a1a;
+  }
+  #references h2 {
+    font-size: 1.1em;
+    font-variant: small-caps;
+    letter-spacing: 0.05em;
+    margin-top: 0;
+    margin-bottom: 0.8em;
+    color: #1a1a1a;
+  }
+  #references ol {
+    padding-left: 1.7em;
+    margin-top: 0.5em;
+  }
+  #references li {
+    margin-bottom: 1em;
+    font-size: 0.88em;
+    line-height: 1.55;
+    color: #2a2a2a;
+  }
+  #references li .ref-title {
+    font-style: italic;
+  }
+  #references li .ref-source {
+    font-weight: bold;
+    font-style: normal;
+  }
+  #references a {
+    color: #2c5f8a;
+    word-break: break-all;
+    text-decoration: none;
+    border-bottom: 1px dotted #2c5f8a;
+  }
+  #references a:visited {
+    color: #5a3e7a;
+    border-bottom-color: #5a3e7a;
+  }
+  #references a:hover {
+    color: #1a3f5c;
+    border-bottom: 1px solid #1a3f5c;
+  } 
+  </style>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <h3 id="chapter-six-and-a-half-the-homeowner-who-polls-yimby">Chapter Six-and-a-Half: The Homeowner Who Polls YIMBY and Shows Up NIMBY — The Missing Actor in San Francisco's Housing Politics</h3>
+<h4 id="the-anomaly">The Anomaly: Citywide Majorities, Project-Level Vetoes</h4>
+<p>Chapters Four and Five presented San Francisco's housing politics as a contest between two organized coalitions: the Mission-rooted far-left alliance of tenant organizations, community land trusts, and cultural-preservation groups on one side, and the YIMBY Action / abundance coalition of policy shops, moderate Democrats, and pro-development advocates on the other. That framing is accurate as far as it goes. But it leaves out the largest actual voting bloc in the city's housing politics — a bloc that belongs formally to neither camp, shows up at neither coalition's press conferences, and whose behavior at the project level is the single most important variable determining whether a given development gets built.</p>
+<p>This is the ordinary San Francisco homeowner who tells a pollster she supports building more housing citywide and then, three months later, shows up to the Planning Commission to oppose the six-story apartment building proposed for the parcel two blocks from her home.</p>
+<p>The polling on this is consistent enough that it should have reshaped the terms of the housing debate years ago. A GrowSF poll conducted ahead of the 2024 mayoral election found majority support among San Francisco voters for five-to-eight story buildings citywide and for skyscrapers near BART stations. Citywide legislative votes have repeatedly confirmed the same pattern: the Family Zoning Plan passed the Board of Supervisors in late 2024, California's AB 2011 — which upzoned commercial corridors across the state, with some of its strongest legislative support coming from representatives whose districts would be most affected — passed in 2022, and a string of state housing bills sponsored by then-Senator Scott Wiener have passed over organized neighborhood opposition by margins that would surprise anyone whose model of California housing politics is built around the assumption that homeowners universally oppose density.</p>
+<p>And yet the same city whose voters endorse upzoning in polls and at the ballot box produces Planning Commission hearings at which project after project draws packed rooms of opposition, generates thousands of comment letters against, and either dies outright or emerges with its unit count reduced, its affordability requirements renegotiated, its parking requirements restored, and its timeline extended by months or years. San Francisco's stock-flow production rate — roughly 2,500 units per year against an RHNA obligation of 11,700 — is not the output of a city whose voters oppose housing. It is the output of a city whose voters support housing in the aggregate and oppose it at every specific address.</p>
+<p>Understanding this gap is not an academic exercise. The Family Zoning Plan's theoretical capacity is worth very little if the same political dynamics that killed individual projects under the old zoning reassert themselves under the new zoning. The abundance coalition's citywide political victory in late 2024 will translate into built units only if the block-level mechanism that has historically produced project-level vetoes can be rewired — either by procedural reforms that remove block-level actors from the decision path, or by incentive reforms that change what those actors want.</p>
+<h4 id="what-the-data-actually-shows">What the Data Actually Shows</h4>
+<p><em>A note to the reader: this section gets into the weeds of political-science research on homeowner behavior and survey experiments. Readers more interested in the policy response than in the underlying mechanism may want to skim to the Searchlight discussion in the final subsection of this chapter. But the mechanism matters, because the policy response only makes sense as a response to it.</em></p>
+<p>The common explanation for NIMBY behavior — that homeowners oppose nearby development because it threatens their property values — turns out to be weaker than the popular discourse assumes. The original formulation, William Fischel's "homevoter hypothesis," was always more nuanced than its popularized version: Fischel's argument was about risk aversion in the face of uncertain impacts on home values, not a straightforward cartel-protection story. The cartel-protection version — homeowners as taxi-medallion holders defending their scarce asset against new supply — has been absorbed into everyday political commentary, but as the Berkeley political scientist David Broockman has observed, the empirical evidence for it is genuinely mixed. Some studies support it, some don't, and the overall picture is less a settled finding than an ongoing argument.</p>
+<p>What is more robustly supported by the evidence is a different story, one that is simultaneously less ideologically satisfying and more politically consequential: the dominant driver of project-level opposition is hyperlocal negative externalities — construction noise, traffic, shadow impacts, disruption of views, changes to the immediate streetscape — rather than portfolio-level financial calculation.</p>
+<p>The empirical foundation for this claim is a body of work by the political scientist Alexander Sahn, a former Berkeley graduate student now at the University of North Carolina. Sahn assembled a dataset that merged the San Francisco Planning Commission's records of every individual who had spoken at a public hearing — their name, their stated address, the project they had commented on, and whether they had supported or opposed it — with the California voter file, which provided independent verification of where each commenter actually lived. The merged dataset allowed Sahn to do something that had not previously been possible at this level of granularity: measure the relationship between a commenter's distance from a proposed project and the commenter's probability of showing up to oppose it.</p>
+<p>The finding was unambiguous. Proximity to a proposed development is an extraordinarily strong predictor of showing up to oppose that development. The closer a San Francisco resident lives to a proposed building, the more likely that resident is to appear at the Planning Commission to register opposition. The effect dominates most other predictors — demographic, economic, ideological — that one might have expected to matter.</p>
+<p>But Sahn's proximity finding, on its own, is consistent with either the financial-self-interest story or the hyperlocal-externalities story. Broockman and his coauthors Josh Kalla and Chris Elmendorf added a second analytical move that helps distinguish between them. Using Sahn's data, they coded the existing density of the census block where each commenter lived, and tested whether that block-level density independently predicted comment valence. It did — and in the direction that the externalities story predicts and the self-interest story does not.</p>
+<p>If a proposed building were to go up at a given location, commenters from less-dense blocks at a given distance were significantly more likely to oppose it, while commenters from denser blocks at the same distance were significantly more likely to support it. A five-story building going up on a block where five-story buildings already exist draws a meaningfully different comment pattern than the same five-story building going up on a block of single-family homes, even controlling for distance and demographics. The people who have chosen to live in denser environments have revealed a preference for density, and they do not perceive a new dense building near them as an externality in the same way that their single-family-neighborhood counterparts do.</p>
+<p>This finding points toward a broader result that the popular discourse on NIMBYism tends to miss: homeowners inside cities, as a group, are <em>more</em> supportive of upzoning than renters are. Broockman and his coauthors asked a national survey sample whether they supported a hypothetical state law requiring cities to allow five-story apartment buildings on major streets and in commercial areas. The self-interest framework predicts that urban homeowners — those who would experience the most immediate disruption and who carry the largest exposure to local property-value effects — should be the most opposed. The actual pattern was the opposite: urban homeowners were the single most pro-upzoning subgroup in the sample, more supportive than urban renters and dramatically more supportive than suburban homeowners and suburban renters. The authors' interpretation is straightforward. Choosing to own a home inside a dense city is a strong revealed preference for density as a way of life. People who make that choice and then are asked whether government should permit more of the thing they have chosen tend to say yes.</p>
+<p>This is where the symbolic-politics tradition in political science re-enters the picture. David Sears and his collaborators established in the 1970s, working on issues from school busing to tax policy, that most voters on most issues do not reason from careful self-interest calculation. They reason from group affect: do I like the kinds of people this policy seems to benefit, and do I dislike the kinds of people this policy seems to harm? Broockman and his coauthors designed a series of survey experiments to test whether housing opinion follows the same logic, and the results are striking.</p>
+<p>When respondents were asked whether they supported permitting five-story apartment buildings, adding the single word "luxury" to the question — "five-story luxury apartment buildings" — dropped support by 18 percentage points among respondents with negative affect toward wealthy people. The underlying policy is identical. The symbolic valence of the policy, and therefore the answer, is not. A parallel experiment varied whether the entity proposing a project was described as a "big real-estate developer" or a "small, local home builder." Respondents who held negative views of developers became measurably less supportive when the same project was described using the developer frame rather than the small-builder frame.</p>
+<p>These findings have two direct implications for San Francisco's housing politics. The first is that the progressive left's rhetorical strategy of describing new market-rate development as "luxury condos" is not an incidental descriptive choice. It is a symbolic-politics intervention of the exact kind that Broockman's experiments show to be effective, and it works on voters who would, in the absence of that framing, support the underlying policy. The 18-point swing is not a small effect; in a city where Planning Commission outcomes and Board of Supervisors votes are often decided at the margin, it is decisive. The second implication is that the ordinary homeowner's opposition to the specific project near her home is not mainly a calculation about her net worth. It is some combination of genuine concern about hyperlocal disruption — noise, traffic, shadow, streetscape — and symbolic reasoning about what kind of people and what kind of city the project seems to represent. These are different problems with different solutions, and neither of them is well addressed by the existing debate between the far-left and abundance coalitions.</p>
+<h4 id="the-interest-group-capture-layer">The Interest-Group Capture Layer</h4>
+<p>The individual homeowner showing up at the Planning Commission to oppose the building down the block does not, by herself, stop very many projects. What stops projects is the standing coalition that her opposition gets absorbed into — and understanding that coalition requires returning to the "everything bagel" framework introduced in Chapter Five and examining how it operates at the project level rather than at the level of overall policy design.</p>
+<p>A recent theoretical paper by Berkeley's Anna Weissman, with Asya Magazinnik and Michael Hankinson, argues that the persistent underproduction of housing in dense, ostensibly pro-housing cities like San Francisco is less a story about individual homeowner opposition than a story about interest-group rent extraction. When a developer proposes a profitable project in San Francisco — particularly before the 2022 rise in interest rates, when construction financing was relatively cheap and the upside on a completed building was substantial — that profitability attracted a predictable standing coalition of parties seeking to capture some portion of the value the project would generate.</p>
+<p>The coalition is not secret and its participants are not bad actors. The city's planning and building departments seek impact fees to fund affordable housing, infrastructure, and general-fund needs. Building-trades unions seek project-labor agreements, prevailing-wage guarantees, and apprentice-hour requirements. Environmental reviewers, both within CEQA and outside it, seek mitigation measures for traffic, air quality, and shadow impacts. Affordable-housing advocates seek higher inclusionary percentages, deeper affordability tiers, and longer compliance periods. Tenant groups seek protections for existing nearby renters. Each of these demands is, on its own terms, defensible. Each responds to a real problem. And in a city where development is discretionary rather than by-right, each participant has the leverage to extract its demand by threatening to delay or defeat the project if the demand is not met.</p>
+<p>Broockman, in his conversation with Jerusalem Demsas on <em>The Atlantic</em>'s <em>Good on Paper</em> podcast, describes the dynamic explicitly: "Some of the barrier is NIMBYism — that, yes, the people in the immediate vicinity will show up to give negative comments about new housing — but a lot of the story is that those folks are in coalition with this set of groups who want to capture value from new housing, and that gum up the works." The individual neighbor's hyperlocal objection provides the narrative framing and the moral cover for a process that is simultaneously extracting value for interest groups with no particular stake in the hyperlocal question.</p>
+<p>This is the structural reason that citywide pro-housing majorities coexist with project-level anti-housing outcomes. At the citywide level, the question on the ballot is a policy abstraction — "should the city allow more housing" — to which voters can respond based on their general views about density, growth, affordability, and neighborhood character. At the project level, the question is being decided in a venue where a specific, profitable, identifiable project has attracted a specific, organized, well-resourced coalition of parties whose interests are not aligned with the citywide majority's abstract preference but are very precisely aligned with slowing the project down until their particular demands are met. The median voter is not in the Planning Commission hearing. The median voter is at home. The room is occupied by the coalition, and the coalition has staff.</p>
+<p>This dynamic is why Broockman observes, accurately, that candidates for San Francisco's citywide offices — mayor, state senator, state assembly — have increasingly converged on pro-housing positions in their campaigns, even when their records at the district or neighborhood level were more ambivalent. The electorate in a citywide election is closer to the abstract-policy electorate that supports upzoning; the electorate at a district or Planning Commission hearing is dominated by the project-specific coalition that opposes the particular building. The same politician can, without inconsistency, be pro-housing citywide and skeptical neighborhood-by-neighborhood, because those are two different political audiences with two different effective preferences.</p>
+<p>The implication for the policy debate the rest of this document has been tracing is important. The far-left critique in Chapter Four treats opposition to market-rate housing as originating in legitimate community self-defense by vulnerable populations, which it sometimes is. The abundance critique in Chapter Five treats opposition as originating in a discrete class of bad-faith NIMBY homeowners, which it sometimes is. But the dominant actual mechanism, at least in the case of large cities whose voters support housing in the abstract, is neither of these. It is the tactical alignment between diffuse hyperlocal homeowner concerns and a standing professional coalition of value-extractors, operating through a discretionary-review process that gives each of them veto leverage and gives the citywide majority no corresponding mechanism to assert its preference. Fix either piece in isolation — remove the homeowner objection while leaving the interest-group process intact, or streamline the interest-group process while leaving the homeowner veto intact — and the problem persists. Fix both, and you begin to approach the conditions under which citywide democratic majorities translate into built housing.</p>
+<h4 id="the-searchlight-proposal">The Searchlight Proposal: Re-Aligning the Block-Level Incentive</h4>
+<p>The most creative policy response to the Broockman mechanism currently in circulation comes from an unexpected quarter. In November 2025, the Searchlight Institute — a moderate policy shop associated with the broader abundance-adjacent reform movement — published a proposal by Aaron Shroyer and Chad Maisel titled "The Searchlight Approach to the Housing Crisis." The proposal is framed as a federal incentive program, but what makes it analytically interesting is that it is, in effect, a direct engineering response to the mechanism Broockman and Sahn have documented. If the core political problem is that the costs of new housing are concentrated at the block level while the benefits are diffused at the regional or national level, the Searchlight approach attempts to re-concentrate the benefits at the same geographic scale as the costs.</p>
+<p>The mechanism is straightforward. The federal government would establish production thresholds that cities or precincts could qualify to meet. A jurisdiction would qualify in either of two ways: by permitting at least 75 percent more homes than its preceding three-year average (the "high growth" path, designed to reward cities that substantially accelerate production from wherever they start), or by permitting at least 10 units per 1,000 residents in a given year (the "high per-capita" path, set at roughly the ninetieth percentile of current national production and designed to avoid penalizing cities that are already producing at high levels). Once a jurisdiction hit either threshold, every household in it — renters and homeowners alike — would receive a federal cash rebate. The size of the rebate would be pegged to the change in HUD Fair Market Rents for a two-bedroom home in that market over the previous year. In Nashville, where FMRs rose by $2,556 between 2023 and 2024, every household in Nashville would receive a check for $2,556 in a year the city hit its target. Searchlight's own simulations project a median qualifying-city rebate of roughly $2,220 per household per year.</p>
+<p>For renters, the rebate functions as what Searchlight frames as a "market-based rent freeze" — it compensates the median renter for the previous year's rent increase without the supply-stifling effects that traditional rent freezes produce. For homeowners, it offsets some or all of their annual property tax bill. Crucially, the money goes to residents, not to municipal governments. This distinguishes the Searchlight proposal from a number of superficially similar federal incentive ideas — the bipartisan YIMBY Act, Senator Warren's pro-housing infrastructure bill, the Economic Innovation Group's "density dividend" — all of which direct rewards to city budgets rather than to individual households. The distinction matters. A reward to a city budget does not change the individual homeowner's calculus at the Planning Commission hearing. A reward to the individual homeowner does.</p>
+<p>The polling Searchlight conducted to test the concept produced a finding that is directly relevant to the Sahn/Broockman mechanism. Among respondents who initially opposed more housing being built in their community, 24 percent said they would switch to support if a $1,000 annual rebate were attached. That figure represents roughly 11 percent of the overall electorate shifting sides on project-level housing questions — a margin that, in a venue like the San Francisco Planning Commission, is far more than enough to invert the political economy of individual project approvals. The homeowner who would have shown up to oppose the six-story building down the block is now, at the margin, being offered a direct financial counterweight to her hyperlocal objection. The coalition of interest-group value-extractors still exists, and still has leverage. But the standing pool of neighborhood opposition that the coalition depends on for narrative framing and public legitimacy has been partially drained.</p>
+<p>The Searchlight proposal is worth taking seriously for another reason that is often missed in discussions of federal housing policy. Because the rebate is triggered by production thresholds rather than by policy prescriptions, it leaves the choice of <em>how</em> to increase production entirely to local governments. A city could meet its threshold by streamlining permitting, or by reducing parking requirements, or by upzoning transit corridors, or by providing gap financing to make stalled projects pencil, or by any combination of these. The federal government does not prescribe the method. It simply rewards the result. This is the opposite of the "everything bagel" pathology that Klein's framework identifies in existing federal housing programs, where each program layers additional conditions on top of its funding until the cumulative administrative burden overwhelms the supply response. Searchlight rewards output, not process — and in doing so, it gives every level of the local coalition, from the mayor down to the individual homeowner, a direct stake in output.</p>
+<p>The proposal's honest limitations are worth naming. Searchlight's own polling found that when the rebate concept was tested with explicit framing as a housing-incentive program, initial support was only 14 percent with very high "not sure" responses — a reminder that voters remain genuinely ambivalent about "more housing" as a stated goal, and that the policy's political viability depends heavily on reframing it around the more popular language of permitting streamlining and cost relief. The proposal does not address the construction-cost structure that RAND documented in Chapter One, and does not address the land-banking gap that Chapter Six identified as a legitimate concern in the upzoning debate. It is a political-economy tool, not a production tool in the technical sense. What it attempts to change is not how housing gets built but who has a reason to want it built, and specifically who at the block level has a reason to want it built.</p>
+<p>Within that scope, it is the most precisely targeted intervention currently on offer against the mechanism that Broockman and Sahn have identified. The Family Zoning Plan removed certain zoning barriers to production in San Francisco. It did not change the fact that the homeowner two blocks from any given parcel has every reason to show up and oppose the specific project that the new zoning now permits, and has no corresponding reason to show up and support it. The Searchlight proposal, or something like it, is the kind of instrument that would be required to close that gap — to give the citywide majority that voted for the Family Zoning Plan a reason to defend, project by project, the production increases that the Plan's zoning changes have only made legally possible. Whether any such instrument is federally enactable in the current political environment is a separate question, and one that brings the analysis back to the level of national politics that Part Three of this document will take up.</p>
+</body>
+</html>
