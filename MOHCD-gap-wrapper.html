@@ -23,7 +23,7 @@ Papa.parse('SF-MOHCD-gap.csv', {
         ? `<a href="${d}" target="_blank" rel="noopener">PDF</a>`
         : d
     }));
-    $('#t').DataTable({ data: res.data, columns: cols });
+    $('#t').DataTable({ data: res.data, columns: cols, pageLength: 15 });
   }
 });
 </script>
