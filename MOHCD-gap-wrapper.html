@@ -13,21 +13,12 @@
 <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
 <script>
 Papa.parse('SF-MOHCD-gap.csv', {
-  download: true, header: true,
-  complete: res => {
-  console.log('fields:', res.meta.fields);
-  console.log('row 12:', res.data[11]);
-  console.log('errors:', res.errors);
-    res.data.forEach((row, i) => {
-    const keys = Object.keys(row);
-    if (!('gap_amount' in row) || keys.length !== res.meta.fields.length) {
-      console.warn(`BAD ROW ${i}:`, row, 'keys:', keys);
-    }
-  });
-  console.log('last row (index ' + (res.data.length - 1) + '):', res.data[res.data.length - 1]);  
+  download: true, header: true, skipEmptyLines: 'greedy', 
+  complete: res => {    
     const cols = res.meta.fields.map(f => ({
       title: f,
       data: f,
+      defaultContent: '',
       render: (d) => /^https?:\/\//.test(d)
         ? `<a href="${d}" target="_blank" rel="noopener">PDF</a>`
         : d
