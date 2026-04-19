@@ -18,6 +18,13 @@ Papa.parse('SF-MOHCD-gap.csv', {
   console.log('fields:', res.meta.fields);
   console.log('row 12:', res.data[11]);
   console.log('errors:', res.errors);
+    res.data.forEach((row, i) => {
+    const keys = Object.keys(row);
+    if (!('gap_amount' in row) || keys.length !== res.meta.fields.length) {
+      console.warn(`BAD ROW ${i}:`, row, 'keys:', keys);
+    }
+  });
+  console.log('last row (index ' + (res.data.length - 1) + '):', res.data[res.data.length - 1]);  
     const cols = res.meta.fields.map(f => ({
       title: f,
       data: f,
