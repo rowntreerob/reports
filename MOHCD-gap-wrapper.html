@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>SF MOHCD Gap Financing</title>
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css">
+</head>
+<body>
+<table id="t" class="display"></table>
+
+<script src="https://cdn.jsdelivr.net/npm/papaparse@5/papaparse.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+<script>
+Papa.parse('SF-MOHCD-gap.csv', {
+  download: true, header: true,
+  complete: res => {
+    const cols = res.meta.fields.map(f => ({
+      title: f,
+      data: f,
+      render: (d) => /^https?:\/\//.test(d)
+        ? `<a href="${d}" target="_blank" rel="noopener">PDF</a>`
+        : d
+    }));
+    $('#t').DataTable({ data: res.data, columns: cols });
+  }
+});
+</script>
+</body>
+</html>
