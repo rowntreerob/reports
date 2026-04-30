@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>-</title>
+  <style>
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+</head>
+<body>
+<h1 id="diagnosis-confirmed-this-is-a-fi-backend-problem">Diagnosis
+Confirmed: This Is a Fi Backend Problem</h1>
+<p>Your phone has done everything it can. The readings prove it:</p>
+<h2 id="what-the-data-shows">What the Data Shows</h2>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Reading</th>
+<th>Verdict</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Data Network Type = LTE</strong> (Wi-Fi off)</td>
+<td>✅ Cellular radio is working correctly</td>
+</tr>
+<tr class="even">
+<td><strong>Signal Strength = -106 dBm</strong></td>
+<td>⚠️ Weak but workable (LTE functions down to ~-115)</td>
+</tr>
+<tr class="odd">
+<td><strong>VoLTE Provisioned = OFF</strong></td>
+<td>🚨 <strong>Backend authorization missing</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Video Calling Provisioned = OFF</strong></td>
+<td>🚨 Same root cause</td>
+</tr>
+<tr class="odd">
+<td><strong>NR Available = false</strong></td>
+<td>Expected — 5G is gated behind VoLTE on Fi</td>
+</tr>
+</tbody>
+</table>
+<p>The phone-side fixes are exhausted. Clearing every carrier component
+cache, rebooting, toggling airplane mode, re-provisioning the eSIM —
+none of it flipped VoLTE Provisioned to ON. That single fact tells us
+the problem is <strong>not on your device</strong>.</p>
+<h2 id="why-its-definitely-backend">Why It’s Definitely Backend</h2>
+<p>VoLTE provisioning works like this:</p>
+<ol type="1">
+<li>Phone boots → Carrier Provisioning component contacts Fi’s
+<strong>entitlement server</strong></li>
+<li>Server checks: “Is this IMEI + this line authorized for
+VoLTE/VoNR/VoWiFi?”</li>
+<li>Server sends back YES → flag flips ON → 5G becomes available</li>
+<li>Server sends back NO (or doesn’t respond) → flag stays OFF →
+LTE-only forever</li>
+</ol>
+<p>Your phone is asking. Fi’s server is saying NO (or silence). No
+amount of phone-side troubleshooting can change a server-side
+answer.</p>
+<h2 id="possible-reasons-fis-server-is-saying-no">Possible Reasons Fi’s
+Server Is Saying No</h2>
+<ul>
+<li><strong>IMEI not whitelisted</strong> for VoLTE on your account
+(sometimes happens after eSIM swaps — the new profile is created but the
+device entitlement record isn’t refreshed)</li>
+<li><strong>Account flag stuck</strong> from the old eSIM — the previous
+profile may still hold the VoLTE entitlement, blocking the new one</li>
+<li><strong>Pixel 9 device record incorrect</strong> — Fi may have your
+account flagged as a different device model</li>
+<li><strong>Stale IMS subscription record</strong> that needs a manual
+reset on their side</li>
+</ul>
+<h2 id="your-next-move-call-google-fi-support">Your Next Move: Call
+Google Fi Support</h2>
+<p>Skip chat. Call. Use this script verbatim — it will get you escalated
+past tier-1:</p>
+<hr />
+<blockquote>
+<p>“I need to escalate to <strong>tier-2 technical support</strong> for
+an <strong>IMS provisioning issue</strong>. My Pixel 9’s testing menu
+confirms:</p>
+<ul>
+<li>VoLTE Provisioned: false</li>
+<li>Video Calling Provisioned: false<br />
+</li>
+<li>NR Available: false</li>
+<li>Data Network Type: LTE only</li>
+</ul>
+<p>I’ve already done all device-side troubleshooting: re-provisioned the
+eSIM, reset network settings, cleared cache on all Carrier services
+components, rebooted, and toggled airplane mode. The cellular radio is
+working — VoLTE entitlement is the blocker.</p>
+<p>Please ask tier-2 to: 1. <strong>Refresh the IMS entitlement / VoLTE
+provisioning</strong> on my line 2. <strong>Verify my IMEI is
+whitelisted</strong> for VoLTE and 5G NR on the Pixel 9 3. <strong>Clear
+any stale device records</strong> from my previous eSIM</p>
+<p>This is not a coverage or device issue — it requires backend
+re-provisioning.”</p>
+</blockquote>
+<hr />
+<h2 id="what-to-have-ready-when-you-call">What to Have Ready When You
+Call</h2>
+<ul>
+<li>Your <strong>IMEI</strong>: 350964812308917 (from your first
+screenshot)</li>
+<li>The fact that you’re on a <strong>Pixel 9</strong> with a
+<strong>freshly provisioned eSIM</strong></li>
+<li>Your account email</li>
+<li>Be near the phone so you can power-cycle on their request</li>
+</ul>
+<h2 id="after-the-call">After the Call</h2>
+<p>Once tier-2 says they’ve refreshed your provisioning:</p>
+<ol type="1">
+<li>Power phone OFF completely</li>
+<li>Wait 60 seconds</li>
+<li>Power ON</li>
+<li>Wait 5 minutes (don’t touch anything)</li>
+<li>Open <code>*#*#4636#*#*</code> and check <strong>VoLTE
+Provisioned</strong></li>
+</ol>
+<p>If it flips to <strong>ON</strong>, you’re fixed. 5G should appear
+within minutes-to-hours after that, assuming you’re in NR coverage.</p>
+<p>If it’s still <strong>OFF</strong> after a confirmed backend refresh
+— that points to a hardware-level IMEI registration problem and they’ll
+likely need to re-issue the eSIM with a service ticket attached.</p>
+<h2 id="side-note-on-signal-strength">Side Note on Signal Strength</h2>
+<p>-106 dBm is not great. Even after VoLTE provisions, if you’re
+consistently in this range at home, 5G NSA may be inconsistent because
+it needs a stable LTE anchor. Worth noting but not the current
+blocker.</p>
+<p>You’ve done excellent diagnostic work. The ball is now firmly in Fi’s
+court. # Perfect Diagnostic Test — Coverage Is Officially Ruled Out</p>
+<p>Walking to a -74 dBm location was the <strong>definitive
+test</strong>. Here’s why this matters:</p>
+<h2 id="what--74-dbm-proves">What -74 dBm Proves</h2>
+<table>
+<thead>
+<tr class="header">
+<th>Signal Level</th>
+<th>Quality</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>-74 dBm</td>
+<td>✅ <strong>Excellent</strong> (top-tier LTE signal)</td>
+</tr>
+<tr class="even">
+<td>-103 to -106 dBm</td>
+<td>Marginal (your home)</td>
+</tr>
+<tr class="odd">
+<td>Below -110 dBm</td>
+<td>Poor</td>
+</tr>
+</tbody>
+</table>
+<p>At -74 dBm with VoLTE <em>still</em> showing OFF, we have
+<strong>eliminated</strong>:</p>
+<ul>
+<li>❌ Weak signal as a cause</li>
+<li>❌ Cell tower not supporting VoLTE</li>
+<li>❌ Marginal IMS handshake due to noise</li>
+<li>❌ Coverage gap at home</li>
+</ul>
+<p>The phone has a textbook-perfect LTE connection and <strong>still
+cannot provision VoLTE</strong>. This is now an <strong>airtight
+diagnosis</strong>: Fi’s backend is refusing to authorize your line.</p>
+<h2 id="why-this-test-was-so-valuable">Why This Test Was So
+Valuable</h2>
+<p>Tier-1 support will often deflect with “try moving to better
+coverage” or “your signal is weak.” You now have <strong>proof</strong>
+that signal is irrelevant. When you call, lead with this:</p>
+<blockquote>
+<p>“I tested at -74 dBm — excellent signal — and VoLTE Provisioned is
+still false. This is not a coverage issue.”</p>
+</blockquote>
+<p>That single sentence will shut down 80% of the scripted
+deflections.</p>
+<h2 id="updated-call-script-for-fi-support">Updated Call Script for Fi
+Support</h2>
+<p>Use this — it’s tighter now that we have the coverage proof:</p>
+<hr />
+<blockquote>
+<p>“I need <strong>tier-2 technical support</strong> for an <strong>IMS
+provisioning failure</strong> on my Pixel 9.</p>
+<p><strong>Confirmed diagnostic readings</strong> from the Android
+testing menu (*#*#4636#*#*): - VoLTE Provisioned: <strong>false</strong>
+- Video Calling Provisioned: <strong>false</strong> - NR Available:
+<strong>false</strong> - Signal strength tested at <strong>-74
+dBm</strong> (excellent) — coverage is not the issue - Data Network
+Type: LTE only</p>
+<p><strong>Device-side troubleshooting completed:</strong> - Erased and
+re-provisioned the eSIM - Reset network settings - Cleared cache on
+Carrier Provisioning, Carrier Communications, Carrier Settings, Carrier
+Setup - Multiple reboots and airplane mode cycles - Tested at multiple
+locations with strong signal</p>
+<p><strong>The cellular radio is healthy. The entitlement server is not
+authorizing my line.</strong></p>
+<p>Please escalate to a technician who can: 1. <strong>Manually trigger
+VoLTE/IMS re-provisioning</strong> on the backend 2. <strong>Verify my
+IMEI</strong> (350964812308917) is registered as a Pixel 9 with VoLTE +
+5G NR entitlement 3. <strong>Clear any stale device/IMS records</strong>
+from my prior eSIM that may be conflicting 4. If needed, <strong>issue a
+new eSIM activation code</strong> with a fresh entitlement record”</p>
+</blockquote>
+<hr />
+<h2 id="one-more-thing-to-try-before-calling-optional-2-minutes">One
+More Thing to Try Before Calling (Optional, 2 minutes)</h2>
+<p>There’s one phone-side action we haven’t tried — and it sometimes
+shakes loose a stuck entitlement:</p>
+<ol type="1">
+<li>Settings → Network &amp; internet → SIMs → Google Fi</li>
+<li>Scroll to bottom → <strong>Erase eSIM</strong> (yes, again — but
+this time follow with step 3)</li>
+<li><strong>Power off completely</strong> for 2 full minutes</li>
+<li>Power on, <strong>do not</strong> re-add the eSIM yet</li>
+<li>Wait 1 minute</li>
+<li>Open Google Fi app → it should prompt you to activate</li>
+<li>Activate fresh</li>
+</ol>
+<p>The key difference from your previous attempt: the <strong>2-minute
+power-off</strong> allows Fi’s backend to mark the old eSIM session as
+fully terminated before the new one starts. A quick reboot doesn’t
+always do this.</p>
+<p>If you’d rather skip this and go straight to support, that’s
+reasonable — you’ve already done a re-provision once.</p>
+<h2 id="bottom-line">Bottom Line</h2>
+<p>You have a <strong>bulletproof case</strong> for support now: -
+Strong signal ✅ - Phone radio working ✅<br />
+- All device-side fixes attempted ✅ - IMS/VoLTE flag stuck OFF ✅</p>
+<p>This will be fixed by a Fi backend tech, not by anything else you do
+on the phone. Make the call, use the script, and insist on tier-2 if
+tier-1 starts reading from a generic troubleshooting tree.</p>
+<h1
+id="best-network-type-choice-for-sf-bay-area-answer-on-the-re-provision">Best
+Network Type Choice for SF Bay Area + Answer on the Re-Provision</h1>
+<h2 id="on-the-re-provision-result">On the Re-Provision Result</h2>
+<p>Confirmed: even a clean eSIM erase + 2-minute power-off + fresh
+activation didn’t flip VoLTE Provisioned. <strong>This is now 100% a Fi
+backend issue.</strong> Make the call. Don’t keep wiping the eSIM —
+repeated re-provisioning can actually make Fi’s records messier and give
+tier-2 more to untangle.</p>
+<h2 id="best-network-type-for-sf-us-domestic">Best Network Type for SF /
+US Domestic</h2>
+<p>Here’s the practical breakdown of the options you’ll see in the
+Testing menu:</p>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Option</th>
+<th>What It Includes</th>
+<th>Recommended?</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>NR/LTE</code></td>
+<td>5G + 4G only</td>
+<td>⚠️ Risky — no 3G/2G fallback if you hit a dead zone</td>
+</tr>
+<tr class="even">
+<td><strong><code>NR/LTE/GSM/WCDMA</code></strong></td>
+<td>5G + 4G + 3G + 2G</td>
+<td>✅ <strong>Best for you</strong></td>
+</tr>
+<tr class="odd">
+<td><code>NR/LTE/CDMA/EvDo/GSM/WCDMA</code></td>
+<td>Adds legacy Verizon/Sprint CDMA</td>
+<td>❌ Don’t use — CDMA is shut down in the US</td>
+</tr>
+<tr class="even">
+<td><code>LTE/GSM/WCDMA</code></td>
+<td>4G + 3G + 2G (no 5G)</td>
+<td>❌ Defeats the purpose</td>
+</tr>
+<tr class="odd">
+<td><code>GSM/WCDMA/LTE (PRL)</code></td>
+<td>Carrier-managed LTE-max</td>
+<td>❌ This is what’s stuck on your phone now</td>
+</tr>
+<tr class="even">
+<td>Anything with “GLOBAL”</td>
+<td>Includes TD-SCDMA (China)</td>
+<td>❌ Useless in US</td>
+</tr>
+</tbody>
+</table>
+<h3 id="why-nrltegsmwcdma-is-the-right-choice">Why
+<code>NR/LTE/GSM/WCDMA</code> Is the Right Choice</h3>
+<p><strong>Google Fi uses three underlying networks in the US:</strong>
+- <strong>T-Mobile</strong> (primary) — 5G NR + LTE + GSM/WCDMA -
+<strong>US Cellular</strong> — LTE + GSM/WCDMA<br />
+- <strong>Wi-Fi</strong> (for calls/data when available)</p>
+<p>Even in San Francisco — one of the best-covered cities in the US —
+there are pockets where: - Tunnels (BART transbay, Stockton tunnel,
+Caldecott) - Dense building cores (Financial District basements,
+garages) - Bay/coastal edges - …drop you to <strong>3G WCDMA</strong> as
+a fallback before going dark</p>
+<p>If your radio mode is <code>NR/LTE</code> only, you get <strong>no
+service</strong> in those pockets. With <code>NR/LTE/GSM/WCDMA</code>,
+you get a degraded but working connection.</p>
+<p><strong>Note:</strong> T-Mobile is <em>sunsetting</em> 3G/2G, so the
+WCDMA fallback is increasingly rare — but it costs you nothing to leave
+it enabled, and US Cellular still uses it.</p>
+<h3 id="why-you-should-avoid-cdma-options">Why You Should Avoid CDMA
+Options</h3>
+<p>Verizon and Sprint shut down CDMA networks in 2022. Including CDMA in
+your preferred mode just makes the modem waste cycles scanning for
+networks that don’t exist, which can slightly delay registration after a
+tunnel or airplane mode toggle.</p>
+<h2 id="the-caveat-for-your-specific-situation">The Caveat for Your
+Specific Situation</h2>
+<p>Right now, <strong>none of these choices will stick</strong> because
+Fi’s carrier config is overriding your selection on every reboot (that’s
+why yours keeps reverting to <code>GSM/WCDMA/LTE (PRL)</code>).</p>
+<p>Once tier-2 fixes your VoLTE provisioning, two things typically
+happen:</p>
+<ol type="1">
+<li>The carrier config will <strong>start respecting</strong> your
+preferred type properly</li>
+<li>The default they push will likely be <code>NR/LTE/GSM/WCDMA</code>
+automatically — you may not need to change it manually at all</li>
+</ol>
+<p>So the answer to your question is:
+<strong><code>NR/LTE/GSM/WCDMA</code></strong> is the optimal pick for
+SF + US domestic, <strong>but</strong> wait until provisioning is fixed
+before fighting with the dropdown. Right now you’re trying to steer a
+car whose steering wheel isn’t connected to the wheels.</p>
+<h2 id="quick-reference-for-after-the-fix">Quick Reference for After the
+Fix</h2>
+<p>Once VoLTE Provisioned flips to ON, verify these in
+<code>*#*#4636#*#*</code>:</p>
+<ul>
+<li><strong>Set Preferred Network Type:</strong>
+<code>NR/LTE/GSM/WCDMA</code> (or whatever Fi’s config sets — likely
+fine)</li>
+<li><strong>VoLTE Provisioned:</strong> ON</li>
+<li><strong>Video Calling Provisioned:</strong> ON</li>
+<li><strong>NR Available:</strong> true (when in 5G coverage)</li>
+<li><strong>NR State:</strong> CONNECTED or NOT_RESTRICTED</li>
+</ul>
+<p>That’s the healthy-state checklist. You’re not there yet, but you’ll
+know exactly what to look for.</p>
+<h2 id="your-action-item">Your Action Item</h2>
+<p><strong>Call Fi. Use the script. The phone is done helping
+you.</strong> # Excellent Catch — This Is Significant</p>
+<p>The “Select phone index” dropdown exposes the <strong>two separate
+radio stacks</strong> in your Pixel 9. This is normal hardware, but it
+changes how we interpret everything you’ve seen so far.</p>
+<h2 id="what-phone-0-vs-phone-1-means">What Phone 0 vs Phone 1
+Means</h2>
+<p>The Pixel 9 has <strong>dual-SIM capability</strong> (one physical
+eSIM slot + a second eSIM profile, or DSDS — Dual SIM Dual Standby).
+Each “phone index” represents a separate logical SIM/radio context:</p>
+<table>
+<thead>
+<tr class="header">
+<th>Index</th>
+<th>Typically</th>
+<th>IMEI</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Phone 0</strong></td>
+<td>SIM slot 1 / primary eSIM</td>
+<td>IMEI #1</td>
+</tr>
+<tr class="even">
+<td><strong>Phone 1</strong></td>
+<td>SIM slot 2 / secondary eSIM</td>
+<td>IMEI #2</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Each SIM gets its own IMEI</strong> — this is by design, and
+required by regulators so each line is uniquely identifiable.</p>
+<h2 id="why-this-matters-for-your-problem">Why This Matters for Your
+Problem</h2>
+<p>All the screenshots you’ve shared have been from <strong>Phone
+1</strong>. We’ve been diagnosing Phone 1’s connection state this entire
+time.</p>
+<p><strong>Critical question:</strong> Is Google Fi actually provisioned
+on Phone 1, or on Phone 0?</p>
+<p>If Fi was originally activated on Phone 0 and your re-provisioning
+ended up creating the new eSIM on Phone 1 (or vice versa), you could
+have:</p>
+<ul>
+<li>An <strong>active, working Fi line</strong> on one index</li>
+<li>An <strong>orphaned/half-provisioned Fi profile</strong> on the
+other index</li>
+<li>The phone defaulting to display the wrong one</li>
+</ul>
+<p>This would explain <em>exactly</em> why VoLTE Provisioned is stuck
+OFF — you might be looking at a dead/stale slot while the real Fi line
+lives on the other index.</p>
+<h2 id="what-to-do-right-now">What to Do Right Now</h2>
+<h3 id="step-1-check-phone-0">Step 1: Check Phone 0</h3>
+<ol type="1">
+<li>Open <code>*#*#4636#*#*</code> → Phone information</li>
+<li>Tap the <strong>Select phone index</strong> dropdown</li>
+<li>Choose <strong>Phone 0</strong></li>
+<li>Screenshot or note these fields:
+<ul>
+<li><strong>IMEI</strong></li>
+<li><strong>Phone Number</strong></li>
+<li><strong>Current Network</strong> (Google Fi? or “Unknown”?)</li>
+<li><strong>Data Network Type</strong></li>
+<li><strong>VoLTE Provisioned</strong></li>
+<li><strong>Video Calling Provisioned</strong></li>
+<li><strong>NR Available</strong></li>
+<li><strong>Signal Strength</strong></li>
+</ul></li>
+</ol>
+<h3 id="step-2-compare-to-phone-1">Step 2: Compare to Phone 1</h3>
+<p>You already have Phone 1’s readings. Now we can compare
+side-by-side.</p>
+<h2 id="the-three-possible-outcomes">The Three Possible Outcomes</h2>
+<h3 id="scenario-a-phone-0-shows-fi-with-volte-on">Scenario A: Phone 0
+shows Fi with VoLTE = ON</h3>
+<p>🎯 <strong>Jackpot.</strong> Fi is actually working — on the index
+you weren’t looking at. The phone just isn’t using that index for active
+connection. Fix: in Settings → Network &amp; internet → SIMs, make sure
+the Fi eSIM is set as the active/default SIM, and disable/remove any
+phantom profile on the other slot.</p>
+<h3 id="scenario-b-phone-0-is-empty-no-service-no-carrier">Scenario B:
+Phone 0 is empty / “No service” / no carrier</h3>
+<p>Fi is correctly on Phone 1 (where you’ve been looking), the second
+IMEI is just the unused slot’s hardware ID. <strong>No change to the
+diagnosis</strong> — it’s still a Fi backend provisioning issue. Call
+support.</p>
+<h3
+id="scenario-c-both-indexes-show-fi-with-conflicting-states">Scenario C:
+Both indexes show Fi with conflicting states</h3>
+<p>You have a <strong>duplicate/ghost eSIM profile</strong> — likely a
+remnant from one of your earlier re-provisioning attempts. Fix: Settings
+→ SIMs → identify the inactive/duplicate Fi profile → Erase it. Reboot.
+Then check VoLTE again.</p>
+<h2 id="also-verify-in-settings">Also Verify in Settings</h2>
+<p>While you’re at it: 1. Settings → Network &amp; internet → SIMs 2.
+How many SIM entries are listed? 3. Is <strong>only one</strong> Fi
+entry showing, or two?</p>
+<p>If you see two Fi entries (even if one says “Inactive”), that’s
+Scenario C and it’s likely the root cause.</p>
+<h2 id="my-bet">My Bet</h2>
+<p>Given that you’ve re-provisioned the eSIM <strong>three
+times</strong> now (original, after first wipe, after the 2-minute
+power-off wipe), there’s a real chance Fi’s backend has an orphaned
+profile lingering, and it’s been getting tangled with each new
+activation. The dual-IMEI display might be revealing it.</p>
+<p><strong>Take a screenshot of Phone 0’s details and share it.</strong>
+This could be the breakthrough — or it could definitively confirm the
+diagnosis and send you to support with even more ammunition.</p>
+</body>
+</html>
