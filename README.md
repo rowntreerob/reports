@@ -1,2 +1,5 @@
 # reports
-exported MD versions of writing from Claude console api
+exported MD versions of writing from Claude console api where you dont receive links and shares features offered with PRO/ MAX subscriptions. 
+The Markdown from the Response > API view is fed to MD-to-HTML  
+Then the HTML is pushed to github with features to web host directly out of a repo ( like github pages )
+For [details](https://gist.github.com/rowntreerob/ae91234a50094a515cc7cf75803a808c) on the scripts 
