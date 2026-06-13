@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>lewis-ch15</title>
+  <style>
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">lewis-ch15</h1>
+</header>
+<h1 id="a-debate-lcoe-marginal-cost-markets-and-the-road-to-2050">A
+Debate: LCOE, Marginal-Cost Markets, and the Road to 2050</h1>
+<p><em>Framing note: Below is a constructed debate. “PROF. LEWIS”
+channels the views in your textbook excerpt (E. E. Lewis —
+nuclear-sympathetic, skeptical of FERC-style marginal-cost markets,
+skeptical that plant-level LCOE is a fair comparator). “AMORY” is a
+composite “Lovins-type” advocate — a faithful, </em>strong* version of
+the renewables/efficiency/Green New Deal position, not a weak strawman.
+Both draw on your two source documents (the book and Lazard LCOE+ v18.0,
+June 2025). I interject occasionally as moderator/referee where the
+numbers actually adjudicate the point.*</p>
+<hr />
+<h2 id="round-1-is-lcoe-the-right-yardstick-at-all">Round 1 — Is LCOE
+the right yardstick at all?</h2>
+<p><strong>PROF. LEWIS:</strong> My core complaint is that LCOE was
+invented for a world of dispatchable fossil plants at vertically
+integrated utilities. It is a per-MWh <em>average</em> cost over a
+plant’s life. It works fine when you can compare two plants that both
+produce on demand. It breaks the moment you put a weather-dependent
+generator on the same axis as a controllable one, because a MWh
+delivered at 2 p.m. on a sunny day is not the same product as a MWh
+delivered on a windless January evening. Lazard’s own Table
+16.2-equivalent — their headline bar chart — puts solar at $38–78 and
+onshore wind at $37–86, below new gas. But that chart silently assumes
+the MWh are fungible. They are not.</p>
+<p><strong>AMORY:</strong> And Lazard says so — on the very first page
+of the LCOE section they disclose that the base analysis “does not
+consider the intermittent nature of selected renewable technologies.”
+Nobody is hiding the ball. But here’s where you overreach, Professor:
+you take that legitimate caveat and inflate it into a claim that
+renewables are secretly the <em>most</em> expensive option. Lazard did
+the honest thing this year — they built a <strong>Cost of Firming
+Intermittency</strong> section to answer exactly your objection. Let’s
+use <em>their</em> numbers, not a 2023 Bank of America slide.</p>
+<p><strong>PROF. LEWIS:</strong> I’m happy to. Let’s.</p>
+<hr />
+<h2 id="round-2-the-system-cost-fight-331-wind-vs.-122-firming">Round 2
+— The system-cost fight: $331 wind vs. $122 firming</h2>
+<p><strong>PROF. LEWIS:</strong> My Table 16.3 — the BofA Global
+Research figures — separates <em>direct</em> (plant-level) from
+<em>system</em> (grid-level) cost:</p>
+<table>
+<thead>
+<tr class="header">
+<th>Plant</th>
+<th>Direct</th>
+<th>System</th>
+<th><strong>Total</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Nuclear</td>
+<td>82</td>
+<td>122</td>
+<td><strong>204</strong></td>
+</tr>
+<tr class="even">
+<td>Wind</td>
+<td>40</td>
+<td>291</td>
+<td><strong>331</strong></td>
+</tr>
+<tr class="odd">
+<td>Solar</td>
+<td>36</td>
+<td>413</td>
+<td><strong>449</strong></td>
+</tr>
+</tbody>
+</table>
+<p>When you add the integration costs that LCOE omits — backup,
+transmission, lost stability — nuclear is the <em>cheapest</em>
+carbon-free option, not the most expensive. The plant-level ranking
+inverts.</p>
+<p><strong>AMORY:</strong> That table is the weakest brick in your wall,
+and I think you know it. Look at what it claims: $291/MWh of “system”
+cost for wind and $413 for solar. Those are not measured costs; they’re
+modeled costs at very high, near-100% renewable penetration with
+essentially no other tools — the worst case dressed up as the typical
+case.</p>
+<p>Now look at Lazard’s <em>empirical, ISO-by-ISO</em> firming analysis
+— built on the actual ELCC and Net CONE values that MISO, CAISO, SPP,
+PJM, and ERCOT publish:</p>
+<ul>
+<li>MISO solar: $66 LCOE <strong>+ $50 firming = $116</strong></li>
+<li>MISO wind: $53 <strong>+ $50 = $103</strong></li>
+<li>ERCOT solar: $55 <strong>+ $42 = $97</strong></li>
+<li>PJM solar: $74 <strong>+ $48 = $122</strong></li>
+<li>PJM solar-plus-storage: $114 <strong>+ $51 = $164</strong></li>
+</ul>
+<p>The firming adder is <strong>$42–51/MWh</strong>, not $291. That’s an
+order of magnitude below your BofA figure. And the <em>all-in,
+firmed</em> renewable number — roughly $100–165 — still lands at or
+below your <strong>new nuclear at $141–220</strong>. Your own thesis —
+“compare on a system basis” — when run with real grid-operator data,
+<em>still favors renewables-plus-firming over new reactors.</em></p>
+<p><strong>MODERATOR (referee):</strong> This is the crux, and Amory has
+the better of it on sourcing. The BofA $291–413 system costs are model
+outputs at deep decarbonization; Lazard’s $42–51 is grounded in
+published ELCC/Net CONE. <strong>But</strong> two honest caveats cut
+Lewis’s way: (1) Lazard’s firming cost is computed at <em>today’s</em>
+moderate penetration and <em>rises</em> as renewables grow — Lazard
+explicitly says “the value of firm capacity rises” with penetration, and
+CAISO solar ELCC has already collapsed to <strong>7%</strong>; (2)
+Lazard’s firming “resource” is a gas peaker (or a 4-hr battery), which
+is a <em>fossil</em> or <em>short-duration</em> backstop — it firms
+reliability, not deep decarbonization. So the gap between the two
+estimates is largely a gap between <em>“the grid today”</em> and
+<em>“the grid at 80–100% VRE.”</em></p>
+<hr />
+<h2 id="round-3-the-collapsing-elcc-and-the-penetration-trap">Round 3 —
+The collapsing ELCC and the penetration trap</h2>
+<p><strong>PROF. LEWIS:</strong> Thank you — that’s precisely my point
+and it deserves emphasis. Look at CAISO: solar’s effective load-carrying
+capability is <strong>7%</strong>. Seven. You build 1,000 MW of solar
+nameplate and the grid can count on 70 MW at the peak. SPP winter solar
+is 62%, summer 25% — wildly seasonal. As you saturate the daytime, each
+new panel is worth <em>less</em>, because it produces when the others
+already produce. This is the duck curve I describe in Chapter 5 — Figure
+5.5 — the residual-demand belly that deepens until midday electricity is
+nearly worthless and the evening ramp becomes brutal. Nuclear’s “ELCC”
+is essentially its 90%+ capacity factor, flat across all seasons and all
+penetrations. It doesn’t cannibalize itself.</p>
+<p><strong>AMORY:</strong> Correct on the physics, wrong on the
+conclusion. Three responses.</p>
+<p>First — the <em>firming cost already prices that in.</em> Lazard’s
+formula divides the firm-capacity shortfall
+<code>(1 − ELCC) × Net CONE</code> over delivered MWh. The 7% CAISO
+solar number is <em>why</em> CAISO uses a battery, not a gas peaker, as
+the marginal firming resource. And even <em>with</em> a $18.92/kW-month
+battery Net CONE — the highest in the country — solar-plus-storage firms
+out competitively.</p>
+<p>Second — you’re describing a <em>solved</em> problem, not an
+unsolvable one. The answer to the duck curve is staring at us in the
+other half of the Lazard report: <strong>storage costs are falling
+fast.</strong> Utility-scale 4-hour LCOS dropped to $115–254/MWh, down
+with cell oversupply and rising energy density. PV-plus-storage gets you
+a 41% effective ELCC in CAISO versus 7% standalone. You shift the belly
+into the neck.</p>
+<p>Third — and this is the part your book underplays — <strong>diversity
+and geography.</strong> Your own Figure 5.2 shows Texas and New England
+wind are <em>anti-correlated</em> much of the time. A continental
+HVDC-linked grid turns “the wind isn’t blowing here” into “it’s blowing
+there.” You treat each VRE plant as an island; the modern thesis treats
+the fleet as a portfolio.</p>
+<p><strong>PROF. LEWIS:</strong> Storage that discharges in four hours
+does not solve a 12-hour winter night, let alone a multi-day overcast
+“Dunkelflaute.” I say so plainly: a 4-hour lithium bank used against a
+12-hour night runs at a third of its rating, and if you cycle it that
+hard you replace it every two years against a 30-year panel life. And
+your continental transmission — <em>thousands of miles</em> of HVDC — is
+exactly the grid-level cost LCOE omits and that nobody is paying for.
+Your “portfolio” requires building the most expensive transmission
+network in history first.</p>
+<hr />
+<h2 id="round-4-the-missing-money-problem-and-ferc-markets">Round 4 —
+The “missing money” problem and FERC markets</h2>
+<p><strong>PROF. LEWIS:</strong> Now to the market design, which I
+regard as actively dangerous. Under FERC’s deregulated energy markets,
+generators are paid the <strong>marginal clearing price</strong> — the
+fuel cost of the last unit dispatched. That’s fine for a coal or gas
+plant whose cost <em>is</em> mostly fuel. It is catastrophic for any
+<strong>high-capital, low-marginal-cost</strong> asset — which describes
+<em>both</em> nuclear <em>and</em> wind and solar. When VRE floods the
+market, the clearing price crashes toward zero, sometimes negative. So
+the very assets we need for decarbonization — capital-intensive,
+near-zero marginal cost — cannot recover their capital in the market
+that’s supposed to finance them. That’s the “missing money problem,” and
+capacity markets with 1–3 year horizons don’t fix a 60-year asset.</p>
+<p><strong>AMORY:</strong> Here is the delicious irony, Professor:
+<strong>we agree.</strong> Marginal-cost pricing under-rewards
+capital-intensive zero-marginal-cost generation. But notice what that
+argument actually proves. It proves the <em>market design</em> is broken
+— not that <em>renewables</em> are expensive. You want to use the
+missing-money problem to rescue nuclear. I want to use it to expand
+contracts-for-difference, PPAs, and clean-energy standards that let
+<em>wind, solar, storage, geothermal</em> recover capital too. The
+policy fix — long-term revenue certainty for low-marginal-cost clean
+resources — is <strong>technology-neutral</strong>, and it
+disproportionately helps the <em>cheapest</em> clean resources, which
+Lazard shows are solar and wind.</p>
+<p>And note the empirical kicker you put in your own book: the
+data-center PPAs restarting Palisades and Three Mile Island are great —
+but those same hyperscalers are signing <em>vastly</em> more
+gigawatt-hours of solar and wind PPAs, because they clear faster and
+cheaper. The market is voting.</p>
+<p><strong>PROF. LEWIS:</strong> They’re signing nuclear PPAs because
+they need <em>firm, 24/7, carbon-free</em> power for a constant load,
+and they’ve discovered renewables can’t provide it without a firm
+partner. That’s a concession, not a vote.</p>
+<p><strong>MODERATOR:</strong> Both are right about the diagnosis —
+marginal-cost markets create missing money for <em>all</em>
+capital-heavy clean resources. Where they differ is the <em>remedy’s
+beneficiary.</em> A neutral CfD/PPA regime helps the lowest-LCOE clean
+resource most (favoring Amory). But firm-capacity <em>accreditation</em>
+reforms (PJM/CAISO cutting correlated-resource ELCC) shift value toward
+whatever is genuinely firm (favoring Lewis). Lazard documents
+<em>both</em> trends happening simultaneously.</p>
+<hr />
+<h2 id="round-5-cost-of-capital-and-the-vogtle-ghost">Round 5 — Cost of
+capital and the Vogtle ghost</h2>
+<p><strong>AMORY:</strong> Let me press my advantage on financing,
+because this is where the nuclear case quietly falls apart. Look at
+Lazard’s <strong>cost-of-capital sensitivity</strong>. Nuclear swings
+from <strong>$115/MWh at a 4.2% WACC to $242/MWh at 10%.</strong> It is
+the single most capital-sensitive technology on the board, because ~85%
+of its lifetime cost is upfront and it takes 84 months to build. Solar
+utility barely moves — $48 to $71 across the same range — because it’s
+quick and modular.</p>
+<p>Your own book hands me the rebuttal to your strongest
+counter-argument. You say: “stretch nuclear’s cost recovery to 60 years
+and the levelized fixed cost halves, making it competitive at
+~$106/MWh.” Fine — but that only works at a <em>low,
+government-guaranteed</em> cost of capital over <em>half a century</em>.
+The instant you expose a 60-to-84-month build to private equity at a 12%
+cost of equity, the compounding eats you alive. Vogtle came in at ~$32
+billion for 2.2 GW. That’s the <em>real</em> number, and it’s why no
+merchant utility will build one.</p>
+<p><strong>PROF. LEWIS:</strong> You’ve just made <em>my</em> argument
+for me — and it’s the thesis of my final chapter. Nuclear is uneconomic
+<em>under the financing regime we chose</em>, not under the physics. The
+world’s reactors get built by state-backed entities — EDF, KEPCO,
+Rosatom, China’s CGN — and America’s own large low-marginal-cost,
+long-lived assets, the great dams, were built by the Bureau of
+Reclamation and TVA on 50-year Treasury terms. Hoover Dam was a 50-year
+federal mortgage. If you finance a 70-to-80-year nuclear asset at
+sovereign rates — the way we finance highways, airports, and water
+systems — its LCOE is excellent. The problem isn’t the reactor; it’s
+that we’ve forced century-scale infrastructure to live in a 3-year
+capacity market.</p>
+<p><strong>AMORY:</strong> Then be consistent! If you’ll grant nuclear
+cheap public capital and an 80-year horizon, grant the <em>same</em>
+terms to renewables and storage and transmission — and renewables,
+starting from a 4x lower capital cost and a 2-year build, win running
+away. Cheap public capital is a rising tide that lifts the
+<em>least</em> capital-intensive boat highest. You can’t make “give
+clean capital-heavy assets sovereign financing” a nuclear-only
+argument.</p>
+<p><strong>MODERATOR:</strong> Strong exchange. Lazard’s sensitivity
+table is decisively on Amory’s side <em>for the cost-of-capital
+point</em>: nuclear is uniquely WACC-exposed. Lewis’s valid rejoinder is
+that this is an argument about <em>institutions and financing</em>, not
+about thermodynamics or land use — and that 80-year asset life (IAEA)
+genuinely changes the levelized math if, and only if, the discount rate
+is low.</p>
+<hr />
+<h2 id="round-6-subsidies-rps-and-give-it-away-and-still-profit">Round 6
+— Subsidies, RPS, and “give it away and still profit”</h2>
+<p><strong>PROF. LEWIS:</strong> I want to flag something I find
+genuinely distorting. With the federal Production Tax Credit
+<em>plus</em> state Renewable Portfolio certificates, a wind operator
+can bid <em>negative</em> and still earn money. That suppresses the
+clearing price for everyone — including the carbon-free nuclear plant
+down the road that gets no such treatment until Illinois bolted on a
+Zero Emission Standard to stop its reactors from closing. We are
+subsidizing one form of clean energy into <em>destroying the
+economics</em> of another form of clean energy. That’s not climate
+policy; that’s industrial favoritism.</p>
+<p><strong>AMORY:</strong> Two things. First, Lazard quantifies the
+subsidy you’re worried about, and it’s not magic — the PTC takes onshore
+wind from $37–86 down to roughly $15–75, and the ITC takes utility solar
+from $38–78 to $24–57. Meaningful, but the <em>unsubsidized</em> numbers
+are already competitive. Strip every subsidy tomorrow and solar/wind
+remain the cheapest new energy in Lazard’s stack. Your own book concedes
+the parallel point — that nuclear withered after the ’90s deregulation
+<em>without</em> equivalent support. So the honest position is: clean
+energy of <em>all</em> kinds needs capital support in a marginal-cost
+market. Welcome to my coalition.</p>
+<p>Second — on negative prices “destroying” nuclear: negative prices are
+a <em>signal that we lack storage and flexible demand</em>, not a moral
+outrage. Electrolyzers, EV charging, data centers, and batteries all
+want that cheap midday power. The negative-price problem is a
+<em>transition artifact</em>, and it’s already shrinking as storage
+soaks up the belly of the duck.</p>
+<p><strong>PROF. LEWIS:</strong> A “transition artifact” that closes
+existing zero-carbon reactors is a permanent loss of clean generation we
+then have to rebuild. Closing Indian Point and backfilling with gas
+raised emissions. That’s the real-world scorecard.</p>
+<hr />
+<h2
+id="round-7-land-materials-and-the-things-lcoe-and-firming-both-omit">Round
+7 — Land, materials, and the things LCOE <em>and</em> firming both
+omit</h2>
+<p><strong>PROF. LEWIS:</strong> Both LCOE <em>and</em> Lazard’s firming
+analysis omit my Figure 16.2’s outer ring — the <strong>social and
+environmental</strong> costs. Energy sprawl, transmission corridors, the
+doubled CO₂ from gas plants forced to ramp in start-stop mode to chase
+the duck curve (I cite the Irish CCGT data — nearly <em>twice</em> the
+CO₂/MWh when balancing wind), methane leakage at 30–80× CO₂ potency that
+can erase the entire benefit of switching coal to gas. A renewables grid
+that runs on gas firming is not as clean as its LCOE implies.</p>
+<p><strong>AMORY:</strong> Agreed on gas firming — which is
+<em>exactly</em> why the endgame is storage and clean-firm resources,
+not gas peakers. And note Lazard’s firming section is <em>already</em>
+migrating from “gas peaker” to “4-hour battery” as the marginal firm
+resource in CAISO. On land and materials: nuclear has its own outer ring
+— uranium mining, the still-unsolved repository, decommissioning (Lazard
+bakes decommissioning into the nuclear marginal cost), and the
+security/proliferation externalities your own book lists in the
+keywords. Every source has an outer ring. The question is <em>magnitude
+and reversibility</em>, and a solar farm is decommissioned in months; a
+reactor site is stewarded for generations.</p>
+<p><strong>MODERATOR:</strong> This round is closest to a genuine values
+disagreement rather than a data dispute. Lewis is right that
+<em>gas-firmed</em> renewables carry hidden emissions and that ramping
+doubles CO₂ intensity. Amory is right that this is an argument for
+storage/clean-firm, and that nuclear’s externalities are simply
+<em>different</em>, not absent. Carbon pricing would adjudicate much of
+this: Lazard shows $40–60/ton adds ~$25–40/MWh to gas and ~$37/MWh to
+coal, leaving renewables and nuclear untouched. Both debaters should
+want a carbon price — and a clean-firm-capacity payment.</p>
+<hr />
+<h2 id="round-8-what-actually-gets-built-by-2050">Round 8 — What
+actually gets built by 2050?</h2>
+<p><strong>PROF. LEWIS:</strong> My honest forecast: a diverse fleet,
+but you <em>cannot</em> deep-decarbonize a high-latitude, winter-peaking
+industrial economy on weather-dependent generation plus 4-hour
+batteries. The last 10–20% — the windless overcast week in January —
+needs <em>firm</em> clean power. That’s nuclear, large hydro
+(geographically capped in the US), or fossil-plus-CCS. The cheapest
+<em>complete system</em> includes a substantial nuclear baseload, and
+getting there requires the US government to finance it the way it
+financed the dams.</p>
+<p><strong>AMORY:</strong> My honest forecast: renewables do the heavy
+lifting because they’re already the cheapest electrons and the fastest
+to build — Lazard’s “lowest-cost and quickest-to-deploy.” We firm them
+with a <em>portfolio</em>: 4-to-8-hour batteries for the daily cycle,
+geothermal ($66–109, firm, and IRA-supported), long-duration storage,
+demand flexibility, continental transmission, and — yes — <em>some</em>
+clean firm capacity, where SMRs or existing reactors pencil out. I’m not
+anti-nuclear; I’m anti-<em>expensive</em>. If an SMR ever hits Lazard’s
+pages below $100/MWh, I’ll buy it. Until then, every dollar spent on a
+$141–220/MWh new reactor is a dollar not spent on three times as many
+clean MWh elsewhere.</p>
+<p><strong>PROF. LEWIS:</strong> And every renewable MWh you can’t
+deliver in January is the one that keeps a gas plant on the system for
+another forty years.</p>
+<hr />
+<h2 id="referees-scorecard-where-the-data-actually-lands">Referee’s
+scorecard — where the data actually lands</h2>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Contested point</th>
+<th>Edge</th>
+<th>Why</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Plant-level LCOE is incomplete</td>
+<td><strong>Lewis</strong></td>
+<td>Even Lazard concedes it omits intermittency/integration; comparing
+VRE and firm MWh as fungible is wrong.</td>
+</tr>
+<tr class="even">
+<td>Magnitude of system/integration cost</td>
+<td><strong>Amory</strong></td>
+<td>Lazard’s grounded firming adder is $42–51/MWh, not BofA’s $291–413.
+Firmed renewables (~$100–165) still ≤ new nuclear ($141–220)
+<em>today</em>.</td>
+</tr>
+<tr class="odd">
+<td>Integration cost <em>rises with penetration</em></td>
+<td><strong>Lewis</strong></td>
+<td>ELCC collapse (CAISO solar = 7%) is real; the firming gap widens as
+VRE saturates. The $42–51 is a “today” number.</td>
+</tr>
+<tr class="even">
+<td>“Missing money” indicts marginal-cost markets</td>
+<td><strong>Tie</strong></td>
+<td>Both correct; the diagnosis is shared. The fix is
+technology-neutral, which helps the cheapest clean resource (Amory) but
+also firm resources (Lewis).</td>
+</tr>
+<tr class="odd">
+<td>Cost of capital / build time</td>
+<td><strong>Amory</strong></td>
+<td>Nuclear is uniquely WACC- and schedule-exposed ($115→$242); Vogtle
+is the cautionary tale.</td>
+</tr>
+<tr class="even">
+<td>60–80 yr life + sovereign financing rescues nuclear</td>
+<td><strong>Lewis (conditional)</strong></td>
+<td>True <em>only</em> at low public discount rates over half a century
+— an institutional argument, not a market one. And the same cheap
+capital helps renewables more.</td>
+</tr>
+<tr class="odd">
+<td>Deep-decarb endgame needs <em>firm</em> clean power</td>
+<td><strong>Lewis</strong></td>
+<td>4-hour batteries don’t cover multi-day winter lulls; the last
+~10–20% is genuinely hard.</td>
+</tr>
+<tr class="even">
+<td>Renewables are cheapest/fastest for the <em>bulk</em> of new
+build</td>
+<td><strong>Amory</strong></td>
+<td>Unambiguous in Lazard v18.0, subsidized or not.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Bottom line:</strong> The strongest synthesis is one neither
+man fully concedes: <em>Lewis is right that LCOE understates VRE system
+costs and that marginal-cost FERC markets can’t finance any
+capital-heavy clean asset; Amory is right that the real-world
+integration premium is far smaller than nuclear advocates claim and that
+renewables win the bulk-energy contest decisively.</em> The honest fight
+is not “renewables vs. nuclear” but <strong>“what institution finances
+zero-marginal-cost, long-lived capital, and how do we pay for genuine
+firm capacity”</strong> — which is exactly the missing-money /
+capacity-accreditation frontier Lazard’s 2025 report spends its last
+section on.</p>
+<hr />
+<p>Want me to take this further? I can: - Recompute Lewis’s Table 16.3
+“system cost” claim <em>line-by-line</em> against Lazard’s firming math
+to show exactly where BofA’s $291/$413 diverges; - Draft Lewis’s and
+Amory’s <strong>closing statements</strong>; or - Build a one-page
+“neutral referee” policy memo (carbon price + clean-firm capacity
+payment + CfDs) that both could grudgingly sign.</p>
+</body>
+</html>
