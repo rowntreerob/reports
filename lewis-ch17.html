@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>lewis-ch17</title>
+  <style>
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">lewis-ch17</h1>
+</header>
+<h1 id="the-debate-extended-two-forward-looking-visions-collide">The
+Debate, Extended: Two Forward-Looking Visions Collide</h1>
+<p><em>New inputs: Lewis’s <strong>Chapter 17, “Forecasting the
+Future”</strong> (the book’s closing argument) and Lazard’s
+<strong>LCOE+ v19.0, July 2026</strong> (the updated annual). These are
+the first genuinely </em>forward-looking* documents in the record, and —
+as you predicted — they point in nearly opposite directions. Lewis’s
+chapter is a <strong>total-system, planning-oriented forecast</strong>
+that concludes nuclear must lead. Lazard v19.0 is a
+<strong>project-level snapshot</strong> that explicitly refuses to name
+an optimal mix — yet still finds renewables the cheapest new electron.
+The most important development is that the ground has shifted under both
+of them: costs rose everywhere, storage costs reversed, and the grid
+operators tightened the very accreditation rules the debate turned on
+last round.*</p>
+<hr />
+<h2 id="round-9-the-demand-tsunami-who-serves-the-ai-load">Round 9 — The
+demand tsunami: who serves the AI load?</h2>
+<p><strong>PROF. LEWIS:</strong> Chapter 17 opens with the fact that
+changes everything: demand is now rising <em>rapidly</em> — data
+centers, AI, electrification of transport and industry. After two
+decades of flat US load, we are back to steep growth, and it is a
+<strong>firm, 24/7, high-capacity-factor</strong> load. A hyperscaler
+running a training cluster does not care that solar is cheap at noon; it
+needs 1,000 MW at 3 a.m. in a January dark-doldrum. This is precisely
+the load profile that rewards nuclear’s 90%+ capacity factor and
+punishes a 20%-capacity-factor solar farm. The demand surge is a nuclear
+tailwind.</p>
+<p><strong>AMORY:</strong> The demand surge is real — Lazard v19.0 leads
+its executive summary with it, noting “continuous upward revisions to
+demand projections” driving “a sharp increase in announced new-build gas
+generation despite a 15-year-high LCOE.” But read what the market is
+<em>actually doing</em> with that demand, Professor. It is not queuing
+up for reactors that come online in 2035. Lazard says wind, solar, and
+storage “are expected to continue to account for the majority of
+near-term U.S. capacity additions given their relatively short
+deployment timeline.” When you need power <em>this decade</em>, the
+binding constraint is speed, and a solar-plus-storage project clears
+interconnection and construction in 18 months while a reactor takes
+84.</p>
+<p><strong>PROF. LEWIS:</strong> “Announced” gas — note that word. The
+same summary admits gas turbine supply is <em>constrained</em>,
+extending timelines “well beyond historical norms.” So the fast option
+isn’t fast anymore either. When both firm options are slow, you should
+have started the reactors five years ago. My chapter’s point is that we
+keep making the near-term convenient choice and thereby foreclosing the
+long-term correct one.</p>
+<p><strong>MODERATOR:</strong> Both are describing the same v19.0 fact —
+a demand shock hitting a supply-constrained grid — and drawing opposite
+lessons. Amory owns the near-term deployment-speed argument (unambiguous
+in the data). Lewis owns the point that speed advantages are eroding as
+turbine and interconnection queues clog, which weakens the “just build
+renewables fast” reflex.</p>
+<hr />
+<h2
+id="round-10-everything-got-more-expensive-and-the-cost-of-capital-vise">Round
+10 — “Everything got more expensive” and the cost-of-capital vise</h2>
+<p><strong>AMORY:</strong> Let me get ahead of the Professor’s favorite
+new number. Yes — v19.0 shows renewables rose. Utility solar went from
+$38–78 to <strong>$40–98</strong>; onshore wind from $37–86 to
+<strong>$37–99</strong>. Solar is up 85% and wind 70% off their 2021
+lows. Tariffs, interest rates, supply-chain repricing. I concede it
+freely. <strong>But it happened to everyone.</strong> Gas combined cycle
+rose to $51–129, gas peaking to $144–276, coal to $72–177. The
+<em>relative</em> ranking is unchanged: renewables are still the
+cheapest new-build electron in America. Rising tides lifted every hull;
+mine still floats highest.</p>
+<p><strong>PROF. LEWIS:</strong> The relative ranking of
+<em>plant-level</em> LCOE, yes. But look at what inflation did to the
+cost-of-capital sensitivity, because this is where my thesis lives. New
+nuclear now runs from <strong>$130/MWh at a 4.2% WACC to $291/MWh at
+10%.</strong> That spread <em>widened</em> year over year. And here is
+the argument I have made from the start, now sharpened by v19.0’s own
+data: nuclear’s uncompetitiveness is <em>manufactured by the discount
+rate</em>. At sovereign financing — 4.2% — nuclear is $130, in the same
+neighborhood as offshore wind and cheaper than gas peaking. At merchant
+equity rates, it’s $291. The technology didn’t change between those two
+columns. <strong>Only the financing did.</strong> That is the entire
+book in one row of a spreadsheet.</p>
+<p><strong>AMORY:</strong> And it cuts against you every time you invoke
+it! Apply that same 4.2% sovereign rate to utility solar and it falls to
+<strong>$53</strong>. To onshore wind, near $60. Cheap public capital
+lowers <em>everyone’s</em> cost — and it lowers it <em>most</em> for the
+asset with the shortest build and the lowest capital intensity. If the
+US government is going to socialize the cost of capital, the taxpayer
+gets three-to-four times more clean MWh routing that balance sheet
+through renewables than through reactors. You keep reaching for a lever
+that lifts my side higher than yours.</p>
+<p><strong>PROF. LEWIS:</strong> Not if the renewable MWh arrive when
+nobody needs them. You keep pricing energy; I keep pricing <em>reliable
+capacity</em>. We’ll get to that.</p>
+<p><strong>MODERATOR:</strong> The cost-of-capital exchange is a
+stalemate that both sides claim as a win — correctly, from their own
+framing. Lewis is right that nuclear’s headline number is an artifact of
+merchant financing. Amory is right that public financing is not a
+nuclear-specific rescue and disproportionately rewards short-cycle,
+low-capex assets.</p>
+<hr />
+<h2 id="round-11-the-storage-reversal-the-years-biggest-surprise">Round
+11 — The storage reversal (the year’s biggest surprise)</h2>
+<p><strong>PROF. LEWIS:</strong> Now the number Amory hoped I wouldn’t
+reach. Last round he built his entire endgame on falling storage costs —
+“the answer to the duck curve is storage, and it’s getting cheaper.”
+v19.0 shows storage costs <strong>reversed and rose sharply.</strong>
+Utility-scale 4-hour LCOS went from $115–254 last year to
+<strong>$210–292</strong> this year. The <em>low end nearly
+doubled.</em> Lazard attributes it to lithium-ion import tariffs and
+Foreign-Entity-of-Concern restrictions cutting off cheap Chinese cells.
+The storage cost-decline curve that your whole thesis rode has bent the
+wrong way. And 4-hour storage was never the hard problem anyway — my
+chapter’s point is that <em>no known method</em> economically stores
+energy for the 800 hours per year, or the 11-day British dark-doldrum,
+when VRE simply isn’t there.</p>
+<p><strong>AMORY:</strong> A fair hit, and I’ll take it honestly — this
+is the single strongest new data point for your side. But let me put it
+in proportion. First, Lazard is explicit that this is a
+<em>tariff-and-supply-chain dislocation</em>, not a technology reversal:
+“the materialization of tariffs on lithium-ion battery imports has
+curtailed access to the low-cost Chinese cell supply.” Cells got more
+expensive because of <em>policy</em>, not physics; supply chains are
+already relocating to Southeast Asia and domestic plants. The learning
+curve didn’t break — a trade wall was built across it. Second, the
+storage ITC survived to 2033 under the OBBBA, so the <em>subsidized</em>
+number is far lower. Third — and this is the concession I made last
+round and will repeat — I never claimed 4-hour batteries solve a
+multi-day lull. That’s what geothermal, long-duration storage, demand
+flexibility, and yes, <em>some</em> firm generation are for.</p>
+<p><strong>PROF. LEWIS:</strong> “Some firm generation.” We’re circling
+the drain toward my conclusion.</p>
+<p><strong>MODERATOR:</strong> Decisive round for Lewis on the facts.
+The storage reversal genuinely undercuts the “costs always fall, storage
+will mop up intermittency” narrative that anchored Amory’s Round 3.
+Amory’s mitigation — that it’s a tariff artifact, not a learning-curve
+failure — is legitimate but <em>speculative about the future</em>,
+whereas the cost increase is <em>measured in the present</em>. Advantage
+Lewis, appropriately hedged.</p>
+<hr />
+<h2
+id="round-12-the-penetration-trap-materializes-in-the-accreditation-data">Round
+12 — The penetration trap materializes in the accreditation data</h2>
+<p><strong>PROF. LEWIS:</strong> Last round I predicted that integration
+costs would <em>rise with penetration</em> — that Lazard’s firming adder
+was a “today” number that would grow. One year later, watch it grow. The
+grid operators tightened their capacity-accreditation rules across the
+board: MISO is moving to <strong>Direct Loss of Load (DLOL)</strong>,
+which it says yields “generally lower ELCC values for wind and solar.”
+CAISO replaced flat ELCC with the <strong>Slice of Day</strong>
+framework, forcing resources to prove they can serve <em>all 24
+hours</em> on the worst day. NYISO went to marginal accreditation,
+“reducing accredited capacity values for intermittent resources and
+storage.” The regulators themselves are confirming, in their tariffs,
+that each additional VRE MWh is worth less to reliability. And the
+firming <em>costs</em> followed: firmed renewables in v19.0 now run
+<strong>$87 to $167/MWh</strong> — with ERCOT solar-plus-storage at
+$150, PJM solar-plus-storage at $167, NYISO wind-plus-storage at $146.
+Several of those now sit <strong>above</strong> the entire
+gas-combined-cycle band ($51–129) and are climbing into gas-peaking
+territory. My penetration trap isn’t a theory anymore; it’s in Lazard’s
+own bar chart.</p>
+<p><strong>AMORY:</strong> You’ve overstated the verdict, but I grant
+the direction. Three counterpoints from the same tables. First — the
+<em>headline</em> still holds: Lazard’s own summary says “even after
+incorporating these firming costs, renewables remain broadly
+cost-competitive with the LCOE of CCGTs.” The firmed solar numbers in
+MISO ($115), CAISO ($92), SPP ($110), PJM ($123) are at or below the
+gas-CC high end and <em>far</em> below gas peaking. Second — and Lazard
+flags this in bold — the comparison is <em>rigged against me</em>: it
+applies a firming charge to renewables but “absent any regional
+adjustment or offsetting firming charge applied to the CCGTs
+themselves.” And v19.0 adds a whole new appendix showing gas
+<em>also</em> gets derated — PJM accredits a gas peaker at just
+<strong>63%</strong>, ERCOT applies an extreme-cold outage adder
+calibrated to Winter Storm Uri. Gas is not the perfectly firm resource
+your chapter assumes; it froze in Texas and it fails winter
+accreditation. Third — where firming bites hardest, it’s because
+penetration is already high (ERCOT wind at 49% penetration, $62 firming
+for solar). That’s a <em>success</em> signal — those grids are already
+running majority-renewable.</p>
+<p><strong>PROF. LEWIS:</strong> A gas plant that fails one
+accreditation test still spins synchronous inertia and can burn stored
+fuel for weeks. A becalmed wind farm produces nothing, no matter how you
+accredit it. The asymmetry is physical, not clerical.</p>
+<p><strong>MODERATOR:</strong> The richest exchange of the round. Lewis
+correctly claims vindication on the <em>trajectory</em> — tightening
+ELCC (DLOL, Slice of Day, NYISO marginal) is exactly the penetration
+effect he forecast, and some firmed hybrids now exceed the gas-CC band.
+Amory correctly notes (a) firmed <em>standalone</em> renewables mostly
+still beat gas CC, (b) v19.0’s new conventional-accreditation appendix
+undercuts the “gas is perfectly firm” premise, and (c) the highest
+firming costs occur precisely in the most decarbonized grids. This is
+the debate’s live frontier.</p>
+<hr />
+<h2
+id="round-13-the-reliability-tail-the-iberian-blackout-and-the-dark-doldrums">Round
+13 — The reliability tail: the Iberian blackout and the dark
+doldrums</h2>
+<p><strong>PROF. LEWIS:</strong> Chapter 17 is where I stop arguing cost
+and start arguing <em>catastrophe</em>. On <strong>April 28, 2025, the
+Iberian grid collapsed</strong> — a cascading blackout across Spain and
+Portugal, triggered by voltage oscillations on a grid running
+predominantly on solar with too little synchronous inertia to arrest the
+disturbance. Within one minute the shutdowns cascaded; it took 10 hours
+to restore 40% of demand. This is the ancillary-services/stability
+problem I warned about, made real at national scale. Add the
+<strong>dark doldrums</strong>: Germany, January 2017, VRE below 5% for
+days; <strong>Britain, 2021, an 11-day wind drought</strong> with
+offshore output at 3%. And my empirical trump card — Figure 17.3,
+plotting average electricity price against wind-and-solar share across
+~70 countries: the correlation is <em>positive and strong.</em> Denmark
+and Germany, the VRE champions, have among the highest power prices on
+earth. The real world is running the experiment, and the bill is
+arriving. Meanwhile Texas 2021, Hurricane Florence, Hurricane Michael —
+nuclear ran flawlessly through all of them.</p>
+<p><strong>AMORY:</strong> Now we’re at the heart of it, and I have to
+separate three claims you’ve bundled. On the <strong>Iberian
+blackout</strong>: the cause is still contested — voltage control,
+protection settings, and grid-operator procedures are all implicated,
+not simply “too much solar.” The lesson isn’t “don’t build renewables”;
+it’s “build grid-forming inverters, synchronous condensers, and proper
+reactive-power management” — engineering fixes, not a fuel choice. A
+grid can be stabilized with spinning masses that aren’t reactors. On the
+<strong>dark doldrums</strong>: real, and my honest answer is the same
+as last round — that’s the job of long-duration storage,
+overbuild-plus-curtailment, continental transmission, and a
+<em>modest</em> firm backstop. On <strong>Figure 17.3</strong>:
+correlation is not causation, Professor, and you know it. Denmark’s high
+<em>retail</em> price is dominated by <strong>taxes</strong>, not
+generation cost — Danish pre-tax wholesale is competitive. You’re
+reading a tax-policy chart as a physics chart.</p>
+<p><strong>PROF. LEWIS:</strong> Every one of your fixes — grid-forming
+inverters, synchronous condensers, continental HVDC, long-duration
+storage that doesn’t yet exist — is a <em>cost that never appears in the
+$40 solar LCOE.</em> You keep solving intermittency with an
+ever-lengthening list of things the LCOE omits. At some point the honest
+accountant adds them up, and when he does, a firm nuclear kWh looks
+cheap.</p>
+<p><strong>AMORY:</strong> And every reactor you build to cover a
+3%-of-the-year dark-doldrum sits at low value the other 97%, unless you
+run it flat-out and curtail <em>me</em> at noon — at which point you’ve
+built the most expensive peaking capacity in history. The tail risk is
+real; the question is whether you insure against it with a full fleet of
+reactors or with a lean layer of firm capacity behind a cheap renewable
+bulk.</p>
+<p><strong>MODERATOR:</strong> This is where the two documents most
+clearly diverge, and where the disagreement becomes partly <em>values
+and risk-tolerance</em>, not just data. Lewis’s reliability events
+(Iberia 2025, dark doldrums, Uri) are real and are his strongest
+forward-looking evidence. Amory is right that the blackout’s root cause
+is contested and that Fig. 17.3 conflates taxes with generation cost — a
+genuine methodological flaw in Lewis’s chart. But Amory’s rebuttals
+increasingly consist of <em>costs that live outside the LCOE</em>, which
+is precisely Lewis’s meta-point.</p>
+<hr />
+<h2
+id="round-14-systems-analysis-vs.-snapshot-the-quiet-convergence">Round
+14 — Systems analysis vs. snapshot: the quiet convergence</h2>
+<p><strong>PROF. LEWIS:</strong> Let me name the deepest divergence
+between our two documents, because it’s methodological. My chapter uses
+<strong>systems analysis</strong> — the MIT 67-GW study, the California
+studies, the 42-country study. These model the <em>whole grid over a
+whole year</em>. Their findings are damning for VRE-dominance: to hit
+high renewable penetration you must <strong>overbuild capacity
+3-to-10×</strong> (MIT: from 98 GW base case to 325 GW at 75% VRE;
+California: 500 GW installed to serve a 50-GW need), total system cost
+rises 5/21/42/98% at 10/30/50/75% VRE, and VRE still falls ~800 hours
+short every year. Lazard, by its own admission, does <em>none</em> of
+this. And here’s what’s remarkable about v19.0: <strong>Lazard now says
+so, explicitly.</strong> The new “Scope of LCOE+” section states the
+metric “excludes… system and grid-level costs,” is “not… a total
+system-cost analysis,” does “not say… the optimal mix,” and — I could
+have written this sentence — “storage… by itself cannot solve for
+intermittency” and “firming costs and dispatchability are increasingly
+critical.” Lazard has, in effect, conceded my central methodological
+objection from Round 1.</p>
+<p><strong>AMORY:</strong> I’ll accept that framing — and then turn it.
+Lazard added the “Scope” section not to endorse nuclear, but to stop
+<em>both</em> of us from misusing a project-level tool. Read the “Does
+Not Say” column: it also refuses to say “how demand growth… should be
+supplied” and offers no “recommendations for specific policy.” It’s a
+benchmarking instrument, not a manifesto — for either of us. And notice
+what <em>else</em> v19.0 did: it brought nuclear <em>into</em> the tent.
+For the first time it publishes <strong>nuclear restart</strong>
+economics (Crane/Three Mile Island, Duane Arnold, Palisades) at roughly
+<strong>$71/MWh</strong>, with a marginal cost near <strong>$31</strong>
+— cheaper than almost anything on the board — and it adds
+<strong>SMRs</strong> (Clinch River, Darlington, Natrium) at ~$180. This
+is the convergence I offered last round: <em>if firm clean power
+pencils, I’ll buy it.</em> Restarting a paid-off reactor at $31 marginal
+is a magnificent deal, and I’m first in line. What I won’t sign is a
+$175–255 greenfield reactor when firmed renewables deliver at
+$90–150.</p>
+<p><strong>PROF. LEWIS:</strong> Then we agree on more than the audience
+expects. Restart every reactor. Build the SMRs. My chapter argues
+exactly that — SMRs built incrementally in factories, at lower financing
+risk, plus large plants financed the way we financed the dams. Where we
+part is the <em>center of gravity</em>: I want firm, dispatchable,
+inertia-providing generation to <em>lead</em>, with renewables
+supplementing. You want renewables to lead, with firm power
+supplementing.</p>
+<p><strong>AMORY:</strong> Correct — and that’s the honest disagreement.
+Not “renewables or nuclear,” but <em>which is the spine and which is the
+ribs.</em></p>
+<p><strong>MODERATOR:</strong> The most productive round. Two real
+convergences: (1) Lazard’s new “Scope of LCOE+” section is a genuine
+methodological concession to Lewis — the metric is explicitly
+<em>not</em> a system-cost or planning tool; (2) v19.0’s addition of
+nuclear-restart (~$31 marginal, ~$71 LCOE) and SMR data points is the
+convergence Amory promised — cheap firm clean power he’ll actively
+support. The residual disagreement is now precisely stated:
+<strong>spine vs. ribs.</strong></p>
+<hr />
+<h2 id="closing-statements">Closing statements</h2>
+<p><strong>PROF. LEWIS (for a nuclear-led grid):</strong> “The
+forward-looking evidence has moved my way in a single year. Storage
+costs reversed. Grid operators tightened accreditation, confirming that
+each VRE MWh is worth less at the margin. Iberia blacked out on a
+low-inertia grid. Firmed renewables in the most decarbonized markets now
+cost more than gas combined cycle. And Lazard itself has conceded that
+its headline metric is <em>not</em> a system-cost analysis. The systems
+studies are unanimous: a renewables-dominant grid demands 3-to-10×
+overbuild, transmission we haven’t built, storage that doesn’t exist,
+and still leaves you dark 800 hours a year. The physically and
+economically coherent 2050 grid is <em>led</em> by firm, carbon-free,
+inertia-providing nuclear — large plants and SMRs — financed as the
+century-scale public infrastructure it is, with wind and solar
+contributing where they’re cheap. Anything else is a bet that the dark
+doldrums won’t come. They always come.”</p>
+<p><strong>AMORY (for a renewables-led grid):</strong> “One hard year
+does not overturn two decades of data. Even after tariffs, inflation,
+and a storage-cost reversal, renewables remain the cheapest new electron
+in America, and Lazard confirms they will supply the <em>majority</em>
+of near-term capacity because nothing else can be built fast enough for
+the demand shock. Yes, firming costs are real and rising — and the
+answer is a <em>lean</em> firm layer, not a reactor-first grid: restart
+the paid-off reactors at $31, build SMRs if they hit $100, deploy
+geothermal and long-duration storage, wire the continent together, and
+pay for genuine firm capacity through markets that reward it. The
+Professor wants to insure a 3%-of-the-year tail risk by making the
+expensive 97% the backbone. I want the cheap 97% as the backbone and a
+smart, diverse insurance policy for the tail. Lead with the cheap
+electrons; firm them intelligently.”</p>
+<hr />
+<h2 id="updated-forward-looking-scorecard">Updated forward-looking
+scorecard</h2>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Forward-looking question</th>
+<th>Edge</th>
+<th>Basis in the new documents</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Who serves the near-term AI/demand surge?</td>
+<td><strong>Amory</strong></td>
+<td>v19.0: renewables “quickest-to-deploy,” majority of near-term
+additions; gas turbines supply-constrained.</td>
+</tr>
+<tr class="even">
+<td>Cost-of-capital as decisive variable</td>
+<td><strong>Tie</strong></td>
+<td>Nuclear $130→$291 across WACC; but cheap capital helps short-cycle
+renewables more.</td>
+</tr>
+<tr class="odd">
+<td>Storage as the intermittency solution</td>
+<td><strong>Lewis</strong></td>
+<td>v19.0 storage <em>reversal</em>: utility 4-hr LCOS $115–254 →
+$210–292; low end ~doubled.</td>
+</tr>
+<tr class="even">
+<td>Integration cost rises with penetration</td>
+<td><strong>Lewis</strong></td>
+<td>MISO DLOL, CAISO Slice-of-Day, NYISO marginal accreditation all cut
+VRE ELCC; firmed hybrids now $146–167, above gas CC.</td>
+</tr>
+<tr class="odd">
+<td>Firmed <em>standalone</em> renewables still beat gas</td>
+<td><strong>Amory</strong></td>
+<td>Firmed solar $92–135 mostly ≤ gas-CC high end, far below gas peaking
+$144–276.</td>
+</tr>
+<tr class="even">
+<td>“Gas is perfectly firm” premise</td>
+<td><strong>Amory</strong></td>
+<td>v19.0 appendix: gas peaker accredited 63% (PJM), ERCOT winter derate
+(Uri); gas is <em>not</em> fully firm.</td>
+</tr>
+<tr class="odd">
+<td>Reliability tail (blackouts, dark doldrums)</td>
+<td><strong>Lewis</strong></td>
+<td>Iberia April 2025, German 2017 &amp; British 2021 doldrums; Uri;
+nuclear ran through all.</td>
+</tr>
+<tr class="even">
+<td>Price-vs-VRE-share correlation (Fig 17.3)</td>
+<td><strong>Amory</strong></td>
+<td>Chart conflates <em>taxes</em> (Denmark, Germany) with generation
+cost — methodologically flawed.</td>
+</tr>
+<tr class="odd">
+<td>LCOE ≠ system cost (methodology)</td>
+<td><strong>Lewis</strong></td>
+<td>v19.0’s new “Scope of LCOE+” explicitly concedes it: not a
+system-cost or planning tool.</td>
+</tr>
+<tr class="even">
+<td>Nuclear <em>restart</em> &amp; SMRs as the near-term firm play</td>
+<td><strong>Convergence</strong></td>
+<td>v19.0 adds restart (~$31 marginal / ~$71 LCOE) and SMRs (~$180);
+Amory endorses restart.</td>
+</tr>
+<tr class="odd">
+<td>Greenfield GW-scale nuclear as bulk supply</td>
+<td><strong>Amory</strong></td>
+<td>v19.0 new-build nuclear $175–255; uncompetitive at merchant rates
+absent public financing.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2
+id="why-the-two-documents-genuinely-point-in-opposite-directions">Why
+the two documents genuinely point in opposite directions</h2>
+<p>They are answering <strong>different questions</strong>, and v19.0 is
+unusually candid about this:</p>
+<ul>
+<li><p><strong>Lewis, Ch. 17</strong> asks the <em>planning</em>
+question — “What is the cheapest, most reliable way to run an entire
+decarbonized grid for a full year, including the 800 worst hours?”
+Systems analysis answers: overbuilding weather-dependent generation is
+expensive and fragile, so lead with firm nuclear. His forecast is a
+<strong>whole-system optimization</strong> with reliability as a hard
+constraint.</p></li>
+<li><p><strong>Lazard, v19.0</strong> asks the <em>procurement</em>
+question — “What does one incremental MWh cost to generate today?” — and
+now explicitly disclaims the planning question (“Does Not Say: the
+optimal mix”). Its answer is that renewables remain the cheapest
+marginal electron, so they will dominate near-term builds.</p></li>
+</ul>
+<p>The deepest point of the extended debate is that <strong>both
+documents have moved toward the middle in 2026</strong>: Lazard added a
+firming analysis, a conventional-accreditation appendix, a scope
+disclaimer, and nuclear restart/SMR data points — importing Lewis’s
+concerns into a renewables-friendly frame. Lewis, for his part, endorses
+SMRs and incremental factory-built reactors — importing the modularity
+and speed that were renewables’ advantages. The unresolved question is
+no longer <em>whether</em> the grid needs both, but which is the
+<strong>spine</strong> and which the <strong>ribs</strong> — and that
+turns on how much you fear the dark-doldrum tail versus how much you
+value the cheap, fast, abundant middle.</p>
+<hr />
+<p>Want me to go further? I can: - <strong>Reconstruct Lewis’s
+MIT/California overbuild math</strong> (98→325 GW; 500 GW for a 50-GW
+need) against Lazard v19.0’s firming cost per MWh, to test whether
+“3–10× overbuild” and “$30–62/MWh firming” are the <em>same fact</em>
+expressed two ways; - Draft a <strong>2026 “spine vs. ribs” policy
+memo</strong> both could sign (restart + SMR firm layer + neutral CfDs +
+capacity accreditation reform + transmission/permitting acceleration);
+or - Build a <strong>side-by-side reliability-tail cost model</strong>
+pricing the 800-hour/dark-doldrum gap under a nuclear-led
+vs. renewables-led architecture.</p>
+</body>
+</html>
